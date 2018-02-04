@@ -27,7 +27,7 @@ if errorlevel 9009 (
 )
 
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
-robocopy build_output\html doc /E
+
 goto end
 
 :help
