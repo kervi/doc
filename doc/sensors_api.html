@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sensors API &mdash; Kervi 0.14.0 - beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="GPIO API" href="hal_gpio_api.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="values_api.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.14.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#prerequisites">prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#create-application">Create application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#single-file-application">Single file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#multi-process-file-application">Multi process/file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#start-application">Start application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#kervi-application-anatomy">Kervi application anatomy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#single-file-application">Single file application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#application-line-1-3">Application (line 1-3)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#dashboards-line-5-25">Dashboards (line 5-25)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#sensors-26-39">Sensors (26-39)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#controllers-line-38-96">Controllers (line 38-96)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#linking-controller-inputs-line-100-108">Linking controller inputs (line 100 - 108)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#linking-controller-outputs-line-110-113">Linking controller outputs (line 110 - 113)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#go-into-action-line-115">Go into action (line 115)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#multi-file-process-application">Multi file/process application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#distributed-application">Distributed application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html#linking">Linking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards.html#sensors-and-numbers">Sensors and numbers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html#controller-pads">Controller pads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards.html#gpio-and-boolean-values">GPIO and boolean values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#kervi-device-library">Kervi Device library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#linking-sensors">Linking sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#implementing-a-sensor-device">Implementing a sensor device</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#input-and-output-interfaces">Input and output interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#linking-controllers">Linking controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="signals.html">Signal handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="signals.html#value-linking">Value linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signals.html#value-link-transformation">Value link transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signals.html#dashboard-linking">Dashboard linking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#dc-motors">DC motors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#servo-motor">Servo motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#encryption">Encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#select-platform">Select platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#gpio">GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#development-enviroment">Development enviroment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#github-projects">Github projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#application-demo-integration-tests">Application (demo, integration tests)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-core">Kervi core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-platform-driver">Kervi platform driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-device-library">Kervi device library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-ui-web-dashboards">Kervi UI (Web dashboards)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#install-packages">Install packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="kervi_api.html">Kervi API</a> &raquo;</li>
+        
+      <li>Sensors API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-kervi.sensors.sensor">
+<span id="sensors-api"></span><h1>Sensors API<a class="headerlink" href="#module-kervi.sensors.sensor" title="Permalink to this headline">¶</a></h1>
+<p>Sensor handling in Kervi is split in two parts. 
+The first part is sensor device drivers that handles physical access to sensor hardware.
+The second part is the Sensor class that reads a sensor device and triggers events, store readings to DB.</p>
+<dl class="class">
+<dt id="kervi.sensors.sensor.Sensor">
+<em class="property">class </em><code class="descclassname">kervi.sensors.sensor.</code><code class="descname">Sensor</code><span class="sig-paren">(</span><em>sensor_id</em>, <em>name</em>, <em>device=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensors.sensor.Sensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor is a class that exposes a sensor device as a dynamic value.
+The Sensor class polls the associated sensor device and updates it self when
+the value of the sensor device change.</p>
+<p>All the possibilities for linking to other dynamic values and dashboards are inherited from NumberValue.</p>
+<p>Some sensor devices are multi dimensional and each dimension are reached by a numeric index of the sensor it self.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sensor_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the sensor. This id is never displayed it is used to reference the sensor in code.</li>
+<li><strong>name</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Name of the sensor.</li>
+<li><strong>device</strong> (<code class="docutils literal"><span class="pre">SensorDeviceDriver</span></code>) – The sensor device that should be monitored. Could be one of the sensors from the kervi device library
+or a sensor device driver that inherits from kervi.hal.SensorDeviceDriver</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>polling_interval</strong> (<code class="docutils literal"><span class="pre">float</span></code>) –  Polling interval in seconds. Zero disables polling.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="kervi.sensors.sensor.Sensor.device">
+<code class="descname">device</code><a class="headerlink" href="#kervi.sensors.sensor.Sensor.device" title="Permalink to this definition">¶</a></dt>
+<dd><p>The device that is linked to this sensor class.
+It may be a hardware device from the kervi device library
+or a class that inherits from kervi.hal.SensorDeviceDriver</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kervi.sensors.sensor.Sensor.link_to_dashboard">
+<code class="descname">link_to_dashboard</code><span class="sig-paren">(</span><em>dashboard_id</em>, <em>panel_id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#kervi.sensors.sensor.Sensor.link_to_dashboard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Links the sensor to a dashboard.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dashboard_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the dashboard to link to.
+Enter a * if the sensor should be linked to all dashboards.</li>
+<li><strong>panel_id</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Id of the panel to link to.
+This is the id of a panel you have added your self to a dashboard or one of the
+system panels <em>sys-header</em>, <em>header</em> or <em>footer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
+<li><strong>link_to_header</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Link this input to header of the panel.</li>
+<li><strong>label_icon</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Icon that should be displayed together with label. All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em></li>
+<li><strong>label</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Label text, default value is the name of the sensor.</li>
+<li><strong>flat</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – Flat look and feel.</li>
+<li><strong>inline</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – Display value, sparkline and label in its actual size otherwise it occupys the entire with of the panel</li>
+<li><strong>type</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – One of the following values <em>radial_gauge</em>, <em>vertical_gauge</em>, <em>horizontal_gauge</em>, <em>chart</em> or <em>value</em>.</li>
+<li><strong>show_sparkline</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – Show a sparkline next to the value.</li>
+<li><strong>icon</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – Icon to show. All Font Awesome icons are valid just enter the name of the icon without <em>fa-</em>.</li>
+<li><strong>show_value</strong> (<code class="docutils literal"><span class="pre">bool</span></code>) – Show the numeric value and unit.</li>
+<li><strong>label</strong> (<code class="docutils literal"><span class="pre">str</span></code>) – Label to show default is the name of the sensor.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensors.sensor.Sensor.polling_interval">
+<code class="descname">polling_interval</code><a class="headerlink" href="#kervi.sensors.sensor.Sensor.polling_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>The polling interval of the sensor in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensors.sensor.Sensor.reading_interval">
+<code class="descname">reading_interval</code><a class="headerlink" href="#kervi.sensors.sensor.Sensor.reading_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>The polling interval of the sensor in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">float</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="kervi.sensors.sensor.Sensor.type">
+<code class="descname">type</code><a class="headerlink" href="#kervi.sensors.sensor.Sensor.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sensor type enter values like temperature, pressure, counter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><code class="docutils literal"><span class="pre">str</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hal_gpio_api.html" class="btn btn-neutral float-right" title="GPIO API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="values_api.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.14.0 - beta',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

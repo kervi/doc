@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hardware and devices &mdash; Kervi 0.14.0 - beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Component communication" href="ipc.html" />
+    <link rel="prev" title="Security" href="security.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.14.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#prerequisites">prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#create-application">Create application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#single-file-application">Single file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#multi-process-file-application">Multi process/file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#start-application">Start application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#kervi-application-anatomy">Kervi application anatomy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#single-file-application">Single file application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#application-line-1-3">Application (line 1-3)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#dashboards-line-5-25">Dashboards (line 5-25)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#sensors-26-39">Sensors (26-39)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#controllers-line-38-96">Controllers (line 38-96)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#linking-controller-inputs-line-100-108">Linking controller inputs (line 100 - 108)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#linking-controller-outputs-line-110-113">Linking controller outputs (line 110 - 113)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#go-into-action-line-115">Go into action (line 115)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#multi-file-process-application">Multi file/process application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#distributed-application">Distributed application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html#linking">Linking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards.html#sensors-and-numbers">Sensors and numbers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html#controller-pads">Controller pads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards.html#gpio-and-boolean-values">GPIO and boolean values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#kervi-device-library">Kervi Device library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#linking-sensors">Linking sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#implementing-a-sensor-device">Implementing a sensor device</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#input-and-output-interfaces">Input and output interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#linking-controllers">Linking controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="signals.html">Signal handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="signals.html#value-linking">Value linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signals.html#value-link-transformation">Value link transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="signals.html#dashboard-linking">Dashboard linking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#dc-motors">DC motors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#servo-motor">Servo motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#encryption">Encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware and devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#select-platform">Select platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpio">GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i2c">I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spi">SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#development-enviroment">Development enviroment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#github-projects">Github projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#application-demo-integration-tests">Application (demo, integration tests)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-core">Kervi core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-platform-driver">Kervi platform driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-device-library">Kervi device library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-ui-web-dashboards">Kervi UI (Web dashboards)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#install-packages">Install packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Hardware and devices</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hardware-and-devices">
+<h1>Hardware and devices<a class="headerlink" href="#hardware-and-devices" title="Permalink to this headline">¶</a></h1>
+<p>A central feature in Kervi is platform independent access to hardware and devices.
+Kervi abstracts access to various systems like GPIO and I2C on your board in order to make Kervi solutions
+portable. At the moment there is drivers for Raspberry Pi with more to come.</p>
+<p>The kervi device library contains device drivers to common sensors, displays, gpio extenders.</p>
+<div class="section" id="select-platform">
+<h2>Select platform<a class="headerlink" href="#select-platform" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to install a platform driver via pip.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">kervi</span><span class="p">[</span><span class="n">rpi</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The framework looks for installed platform driver upon application start and
+initialise GPIO, I2C ect.</p>
+</div>
+<div class="section" id="gpio">
+<h2>GPIO<a class="headerlink" href="#gpio" title="Permalink to this headline">¶</a></h2>
+<p>Access to GPIO is done via the kervi.hal module. When your Kervi application starts it scans
+for installed Kervi platform drivers and loads the GPIO driver.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="kn">from</span> <span class="nn">kervi.application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="n">APP</span> <span class="o">=</span> <span class="n">Application</span><span class="p">()</span>
+
+<span class="c1">#add dashboard and panel</span>
+<span class="kn">from</span> <span class="nn">kervi.dashboards.dashboard</span> <span class="kn">import</span> <span class="n">Dashboard</span><span class="p">,</span> <span class="n">DashboardPanel</span>
+<span class="n">DASHBOARD</span> <span class="o">=</span> <span class="n">Dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;Controller Buttons&quot;</span><span class="p">,</span> <span class="n">is_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">DASHBOARD</span><span class="o">.</span><span class="n">add_panel</span><span class="p">(</span><span class="n">DashboardPanel</span><span class="p">(</span><span class="s2">&quot;gpio&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;GPIO&quot;</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">GPIO</span>
+
+<span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO12&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_input</span><span class="p">()</span>
+<span class="c1">#Link to dashboard it will show as a read only switch.</span>
+<span class="c1">#If the the GPIO 12 pin is set high, the switch will change to on.</span>
+<span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO12&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;gpio&quot;</span><span class="p">)</span>
+
+<span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">define_as_output</span><span class="p">()</span>
+<span class="c1">#Link to dashboard it will show as a switch</span>
+<span class="c1">#Press the button on screen to turn the GPIO pin 12 high</span>
+<span class="n">GPIO</span><span class="p">[</span><span class="s2">&quot;GPIO13&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;main&quot;</span><span class="p">,</span> <span class="s2">&quot;gpio&quot;</span><span class="p">)</span>
+
+<span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="i2c">
+<h2>I2C<a class="headerlink" href="#i2c" title="Permalink to this headline">¶</a></h2>
+<p>I2C is used when communicating with i2c serial devices like sensors, displayes and motor controllers.</p>
+<p>If a device exists in the device library there is no need
+to work with i2c directly as the device driver handles i2c communication.</p>
+<p>If a device is not present in the device library you could make your own device driver.</p>
+<p>Below is an example on using I2C that implements a LUX sensor that can be used in a
+Kervi sensor (this is the actual code from the device library).</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">kervi.hal</span> <span class="kn">import</span> <span class="n">I2C</span>
+
+<span class="k">class</span> <span class="nc">TSL2561Device</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="mh">0x39</span><span class="p">,</span> <span class="n">bus</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">bus</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># no gain preselected</span>
+        <span class="c1"># enable the device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">write8</span><span class="p">(</span><span class="mh">0x80</span><span class="p">,</span> <span class="mh">0x03</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pause</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">set_gain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gain</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set the gain &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">gain</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">write8</span><span class="p">(</span><span class="mh">0x81</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">write8</span><span class="p">(</span><span class="mh">0x81</span><span class="p">,</span> <span class="mh">0x12</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pause</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_word</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">wordval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">read_U16</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+            <span class="n">newval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">reverseByteOrder</span><span class="p">(</span><span class="n">wordval</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">newval</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Error accessing 0x</span><span class="si">%02X</span><span class="s2">: Check your I2C address&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">i2c</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+
+    <span class="k">def</span> <span class="nf">read_full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mh">0x8C</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads visible+IR diode from the I2C device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_word</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_ir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reg</span><span class="o">=</span><span class="mh">0x8E</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads IR only diode from the I2C device&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_word</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">16</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gain</span><span class="p">)</span>
+            <span class="n">ambient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_full</span><span class="p">()</span>
+            <span class="n">IR</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># auto gain</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+            <span class="n">ambient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_full</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">ambient</span> <span class="o">&lt;</span> <span class="mi">65535</span><span class="p">:</span>
+                <span class="n">ir_reading</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">ambient</span> <span class="o">&gt;=</span> <span class="mi">65535</span> <span class="ow">or</span> <span class="n">IR</span> <span class="o">&gt;=</span> <span class="mi">65535</span><span class="p">:</span> <span class="c1"># value(s) exeed(s) datarange</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ambient</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_full</span><span class="p">()</span>
+                <span class="n">ir_reading</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_ir</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gain</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ambient</span> <span class="o">*=</span> <span class="mi">16</span>    <span class="c1"># scale 1x to 16x</span>
+            <span class="n">ir_reading</span> <span class="o">*=</span> <span class="mi">16</span>         <span class="c1"># scale 1x to 16x</span>
+
+        <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">ir_reading</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">ambient</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">0.52</span><span class="p">):</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0315</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.0593</span> <span class="o">*</span> <span class="n">ambient</span> <span class="o">*</span> <span class="p">(</span><span class="n">ratio</span><span class="o">**</span><span class="mf">1.4</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">0.65</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0229</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.0291</span> <span class="o">*</span> <span class="n">ir_reading</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">0.80</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0157</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.018</span> <span class="o">*</span> <span class="n">ir_reading</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&lt;=</span> <span class="mf">1.3</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.00338</span> <span class="o">*</span> <span class="n">ambient</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.0026</span> <span class="o">*</span> <span class="n">ir_reading</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ratio</span> <span class="o">&gt;</span> <span class="mf">1.3</span><span class="p">:</span>
+            <span class="n">lux</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">lux</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spi">
+<h2>SPI<a class="headerlink" href="#spi" title="Permalink to this headline">¶</a></h2>
+<p>The SPI interface is comming.</p>
+</div>
+<div class="section" id="device-library">
+<h2>Device library<a class="headerlink" href="#device-library" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to use ready made devices from the kervi device library.
+Below is an example that uses the light sensor TLS2561.</p>
+<p>For a complete list take a look at github &lt;<a class="reference external" href="https://github.com/kervi/kervi-devices">https://github.com/kervi/kervi-devices</a>&gt;</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Module for a sensor &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">kervi.sensors.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">kervi.devices.sensors.TSL2561</span> <span class="kn">import</span> <span class="n">TSL2561Device</span>
+
+<span class="n">lux</span><span class="o">=</span><span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;lux_sensor&quot;</span><span class="p">,</span><span class="s2">&quot;Lux sensor&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">TSL2561Device</span><span class="p">()</span>
+<span class="n">lux</span><span class="o">.</span><span class="n">link_to_dashboard</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;radial_gauge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ipc.html" class="btn btn-neutral float-right" title="Component communication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="security.html" class="btn btn-neutral" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.14.0 - beta',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

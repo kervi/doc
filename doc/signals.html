@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Signal handling &mdash; Kervi 0.14.0 - beta documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Actions" href="actions.html" />
+    <link rel="prev" title="Controllers" href="controllers.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Kervi
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.14.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Get started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#prerequisites">prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getstarted.html#create-application">Create application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#single-file-application">Single file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#multi-process-file-application">Multi process/file application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getstarted.html#start-application">Start application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#kervi-application-anatomy">Kervi application anatomy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#single-file-application">Single file application</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#application-line-1-3">Application (line 1-3)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#dashboards-line-5-25">Dashboards (line 5-25)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#sensors-26-39">Sensors (26-39)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#controllers-line-38-96">Controllers (line 38-96)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#linking-controller-inputs-line-100-108">Linking controller inputs (line 100 - 108)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#linking-controller-outputs-line-110-113">Linking controller outputs (line 110 - 113)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview.html#go-into-action-line-115">Go into action (line 115)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#multi-file-process-application">Multi file/process application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#distributed-application">Distributed application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dashboards.html">Dashboards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html#linking">Linking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards.html#sensors-and-numbers">Sensors and numbers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dashboards.html#controller-pads">Controller pads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dashboards.html#gpio-and-boolean-values">GPIO and boolean values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensors.html">Sensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#kervi-device-library">Kervi Device library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#linking-sensors">Linking sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors.html#implementing-a-sensor-device">Implementing a sensor device</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#input-and-output-interfaces">Input and output interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#linking-controllers">Linking controllers</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Signal handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#value-linking">Value linking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#value-link-transformation">Value link transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard-linking">Dashboard linking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="actions.html">Actions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#define-actions">Define actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#actions-with-timeout">Actions with timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#asynchronous-action-call">Asynchronous action call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#interupts">Interupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#linking-to-dashboards">Linking to dashboards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#system-actions">System actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#complete-example">Complete example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions.html#multiprocess">Multiprocess</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera.html">Camera and video</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motors.html">Motors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#dc-motors">DC motors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#servo-motor">Servo motor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motors.html#stepper-motors">Stepper motors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#accessing-config-values-in-code">Accessing config values in code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="security.html#users">Users</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="security.html#anonymous-access">Anonymous access</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="security.html#encryption">Encryption</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hal.html">Hardware and devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#select-platform">Select platform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#gpio">GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#i2c">I2C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#spi">SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal.html#device-library">Device library</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ipc.html">Component communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commandline tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#development-enviroment">Development enviroment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#github-projects">Github projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#application-demo-integration-tests">Application (demo, integration tests)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-core">Kervi core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-platform-driver">Kervi platform driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-device-library">Kervi device library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contribute.html#kervi-ui-web-dashboards">Kervi UI (Web dashboards)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#install-packages">Install packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribute.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kervi_api.html">Kervi API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dashboards_api.html">Dashboards api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_api.html">Camera api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_api.html">Controllers api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensors_api.html">Sensors API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_gpio_api.html">GPIO API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_i2c_api.html">I2C API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hal_devices_api.html">Devices API</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kervi</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Signal handling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="signal-handling">
+<span id="dynamic-values-label"></span><h1>Signal handling<a class="headerlink" href="#signal-handling" title="Permalink to this headline">¶</a></h1>
+<p>The KerviValue class is a core class in the kervi framework that handles monitoring and flowing of data inside the application.</p>
+<p>A KerviValue has the following properties:</p>
+<ul class="simple">
+<li>Holds one value of type int, float, string, boolean and dict.</li>
+<li>It exists in two modes input or output. A <em>kervi value</em> in input mode is changeable and a value in output mode is readable.</li>
+<li>An <em>input value</em> can link to <em>output value</em> in order to monitor changes in the output value. This link exists accross process and device boundaries.</li>
+<li>It is possible to link a kervi value to dashboard and panels. The visible representation depends on value type and input mode.</li>
+</ul>
+<div class="section" id="value-linking">
+<h2>Value linking<a class="headerlink" href="#value-linking" title="Permalink to this headline">¶</a></h2>
+<p>Value linking is the process of connect an output KerviValue to a value that is input.</p>
+<p><em>Direct linking</em></p>
+<p>In the example below is a short snippet that shows how to make
+a self balancing robot. This is done as direct linking where all values are
+in the same process.</p>
+<p>The orientation of the robot is obtained by a LSM9DS0 sensor by reading its gyros to establish the robots
+orientation. The output of the sensor is linked to a pid controller that calculates
+how much the wheels must be moved to keep the robot in balance.
+The pid controllers result is send to the steering controller that calculates much speed each motor shuld have
+and send the calculated motor speeds to the motor controller.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#imports an initialization of the application is omitted for clarity</span>
+
+<span class="c1">#create orientation sensor</span>
+<span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#create pid controller</span>
+<span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
+
+<span class="c1">#link sensor roll value and pid controller</span>
+<span class="n">pid_controller</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">orientation_sensor</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1">#create the steering controller</span>
+<span class="n">steering</span> <span class="o">=</span> <span class="n">MotorSteering</span><span class="p">()</span>
+<span class="c1">#link adaptive_speed controller input to steering controller</span>
+<span class="n">steering</span><span class="o">.</span><span class="n">adaptive_speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">pid_controller</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1">#create motor controller</span>
+<span class="n">motor_board</span> <span class="o">=</span> <span class="n">AdafruitMotorHAT</span><span class="p">()</span>
+<span class="c1">#link dc motors to the steering controller outputs</span>
+<span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">left_speed</span><span class="p">)</span>
+<span class="n">motor_board</span><span class="o">.</span><span class="n">dc_motors</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">speed</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">steering</span><span class="o">.</span><span class="n">right_speed</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Indirect linking</em></p>
+<p>It is not possible to use direct linking if the two values that should
+be connected are in different processes or maybe on different devices/computers.
+In this situation it is possible use utilize the buildin inter process communication system
+in Kervi.</p>
+<p>In the snippet below the link is done by passing the id of the sensor in the call to link_to.
+The input value then starts to listen for value changes that are broardcast over IPC by the output.</p>
+<p>An indirect link must be established on the input side in the link.</p>
+<p>Process one code</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#create orientation sensor</span>
+<span class="n">orientation_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="s2">&quot;Orientation&quot;</span><span class="p">,</span> <span class="n">LSM9DS0OrientationDeviceDriver</span><span class="p">(),</span> <span class="n">reading_interval</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>process two code</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pid_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="s2">&quot;balance_pid&quot;</span><span class="p">,</span> <span class="s2">&quot;Balance pid&quot;</span><span class="p">)</span>
+<span class="n">pid_controller</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;orientation.roll&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="value-link-transformation">
+<h2>Value link transformation<a class="headerlink" href="#value-link-transformation" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to transform the values that are passed in the link by apply a transformation
+function or lambda expression. This is useful if the value ranges of the two</p>
+<blockquote>
+<div>values are not the same or if you need to change the sign of the</div></blockquote>
+<p>values that are exchanged in the link.</p>
+<p>Below is an example where a servo motor is mounted opposite to the on screen pan
+controller. By changing the sign the in the link the servo will rotate as expected on
+the screen.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">motor_board</span><span class="o">.</span><span class="n">servo_motors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">link_to</span><span class="p">(</span><span class="n">CAM1</span><span class="o">.</span><span class="n">pan</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dashboard-linking">
+<h2>Dashboard linking<a class="headerlink" href="#dashboard-linking" title="Permalink to this headline">¶</a></h2>
+<p>Kervi values may be linked to dashboards.
+When linked they will show up as either inputs that the user can change or
+a read only representation.</p>
+<p>Details about dashboard linking are found in the dashboard section.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="actions.html" class="btn btn-neutral float-right" title="Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="controllers.html" class="btn btn-neutral" title="Controllers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tim Wentzlau.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.14.0 - beta',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
