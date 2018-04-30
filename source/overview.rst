@@ -50,10 +50,10 @@ myapp.py
         #build in sensor that measures cpu use
         SENSOR_CPU_LOAD = Sensor("CPULoadSensor", "CPU", CPULoadSensorDeviceDriver())
         #link to sys area top right
-        SENSOR_CPU_LOAD.link_to_dashboard("*", "sys-header")
+        SENSOR_CPU_LOAD.link_to_dashboard("sys-header", "*")
         #link to a panel, show value in panel header and chart in panel body
-        SENSOR_CPU_LOAD.link_to_dashboard("system", "cpu", type="value", link_to_header=True)
-        SENSOR_CPU_LOAD.link_to_dashboard("system", "cpu", type="chart")
+        SENSOR_CPU_LOAD.link_to_dashboard("cpu", "system", type="value", link_to_header=True)
+        SENSOR_CPU_LOAD.link_to_dashboard("cpu", "system", type="chart")
 
         #build in sensor that measures cpu temperature
         SENSOR_CPU_TEMP = Sensor("CPUTempSensor", "", CPUTempSensorDeviceDriver())
@@ -121,11 +121,11 @@ myapp.py
         FAN_CONTROLLER.temp.link_to(SENSOR_CPU_TEMP)
         
         #link the other fan controller inputs to dashboard
-        FAN_CONTROLLER.trigger_temp.link_to_dashboard("app", "fan")
-        FAN_CONTROLLER.max_temp.link_to_dashboard("app", "fan")
+        FAN_CONTROLLER.trigger_temp.link_to_dashboard("fan", "app")
+        FAN_CONTROLLER.max_temp.link_to_dashboard("fan", "app")
         
         #link action to dashboard
-        FAN_CONTROLLER.active.link_to_dashboard("app", "fan")
+        FAN_CONTROLLER.active.link_to_dashboard("fan", "app")
         
         #link the fan controller to a DC motor on controlled by a Adafruit motor hat
         from kervi_devices.motors.adafruit_i2c_motor_hat import AdafruitMotorHAT

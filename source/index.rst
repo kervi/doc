@@ -42,8 +42,8 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
         from kervi_devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
         
         cpu_sensor = Sensor("CPULoadSensor","CPU", CPULoadSensorDeviceDriver())
-        cpu_sensor.link_to_dashboard("system", "sensors", type="value", link_to_header=True)
-        cpu_sensor.link_to_dashboard("system", "sensors", type="chart")
+        cpu_sensor.link_to_dashboard("sensors", "system", type="value", link_to_header=True)
+        cpu_sensor.link_to_dashboard("sensors", "system",type="chart")
 
         APP.run()
 

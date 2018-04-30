@@ -18,9 +18,9 @@ The snippet below shows how to create a camera stream server and link it to a da
     CAM1.flip_horizontal = True
     
     #link camera as background
-    CAM1.link_to_dashboard("app")
+    CAM1.link_to_dashboard(None, "app")
     #link camera to a panel
-    CAM1.link_to_dashboard("system", "cam")
+    CAM1.link_to_dashboard("cam", "system")
 
 .. image:: images/dashboard_cam.png
     :width: 45 %
@@ -67,9 +67,9 @@ by using the following code.
     CAM1.flip_horizontal = True
     
     #link camera as background
-    CAM1.link_to_dashboard("app")
+    CAM1.link_to_dashboard(None, "app")
     #link camera to a panel
-    CAM1.link_to_dashboard("system", "cam")
+    CAM1.link_to_dashboard("cam", "system")
 
     #link pan and tilt to servos
     motor_board = PCA9685ServoBoard()

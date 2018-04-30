@@ -170,7 +170,7 @@ A linked action will show up as a button on the panel.
     def my_action():
         print("this is my action")
 
-    my_action.link_to_dashboard("app", "gate")
+    my_action.link_to_dashboard("gate", "app")
     
 You can send parameters to the action.
 
@@ -182,7 +182,7 @@ You can send parameters to the action.
     def my_action(p):
         print("my_action is called with:", p)
 
-    my_action.link_to_dashboard("app", "gate", action_parameters=["x"])
+    my_action.link_to_dashboard("gate","app", action_parameters=["x"])
 
 
 If an interupt function is set for the action it will be called when the button is released. 
@@ -215,7 +215,7 @@ You are able to specify parameters that should be send in the interupt.
     def my_action_interupt(p):
         print("my_action interupt called: ", p)
 
-    my_action.link_to_dashboard("app", "gate", action_parameters=["x"], interupt_parameters=["i"])
+    my_action.link_to_dashboard("gate","app", action_parameters=["x"], interupt_parameters=["i"])
 
 Other keyword parameters you can use in link_to_dashboard:
 
@@ -376,10 +376,10 @@ There are to two actions move_gate and stop_gate these are linked to the "gate" 
                 pass
 
         gate_controller = GateController()
-        gate_controller.move_gate.link_to_dashboard("app", "gate", inline=True, button_text=None, button_icon="arrow-up", label=None, action_parameters=[True], )
-        gate_controller.move_gate.link_to_dashboard("app", "gate", inline=True, button_text=None, button_icon="arrow-down", label=None, action_parameters=[False])
+        gate_controller.move_gate.link_to_dashboard("gate", "app", inline=True, button_text=None, button_icon="arrow-up", label=None, action_parameters=[True], )
+        gate_controller.move_gate.link_to_dashboard("gate", "app", inline=True, button_text=None, button_icon="arrow-down", label=None, action_parameters=[False])
         
-        gate_controller.link_to_dashboard("settings", "gate")
+        gate_controller.link_to_dashboard("gate", "settings")
 
         from kervi.devices.motors.dummy_motor_driver import DummyMotorBoard
 

@@ -95,9 +95,9 @@ In that way it is easy to change hardware and make changes to UI without re-codi
     steering = MotorSteering()
     
     #Link to ui
-    steering.speed.link_to_dashboard("app", "steering")
-    steering.direction.link_to_dashboard("app", "steering")
-    steering.all_off.link_to_dashboard("app", "steering")
+    steering.speed.link_to_dashboard("steering", "app")
+    steering.direction.link_to_dashboard("steering", "app")
+    steering.all_off.link_to_dashboard("steering", "app")
 
     #link to hardware
     motor_board = AdafruitMotorHAT()

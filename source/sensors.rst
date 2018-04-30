@@ -28,8 +28,8 @@ A sensor is linked to a dashboard by calling the method link_to_dashboard.
     from kervi_devices.sensors import BMP085
     SENSOR_1 = Sensor("roomtemp1", "Room 1", BMP085.BMP085DeviceDriver(BMP085.TEMPERATURE_SENSOR))
     
-    SENSOR_1.link_to_dashboard("system", "cpu", type="value", size=2, link_to_header=True)
-    SENSOR_1.link_to_dashboard("system", "cpu", type="chart", size=2)
+    SENSOR_1.link_to_dashboard("cpu", "system", type="value", size=2, link_to_header=True)
+    SENSOR_1.link_to_dashboard("cpu", "system", type="chart", size=2)
 
 Beside from linking to dashboards an sensor may also be linked to controller inputs.
 
