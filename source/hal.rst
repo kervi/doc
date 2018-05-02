@@ -39,12 +39,12 @@ for installed Kervi platform drivers and loads the GPIO driver.
     GPIO["GPIO12"].define_as_input()
     #Link to dashboard it will show as a read only switch.
     #If the the GPIO 12 pin is set high, the switch will change to on. 
-    GPIO["GPIO12"].link_to_dashboard("gpio", "main")
+    GPIO["GPIO12"].link_to_dashboard("main", "gpio")
 
     GPIO["GPIO13"].define_as_output()
     #Link to dashboard it will show as a switch
     #Press the button on screen to turn the GPIO pin 12 high
-    GPIO["GPIO13"].link_to_dashboard("gpio", "main")
+    GPIO["GPIO13"].link_to_dashboard("main", "gpio")
 
     APP.run()
 
