@@ -2,7 +2,7 @@
 Overview
 =================================
 
-If you have completed the steps in the *Get started* section the result should be a running kervi application.
+When you have completed the steps in the *Get started* section the result should be a running kervi application.
 
 Kervi application anatomy
 =========================
@@ -11,7 +11,7 @@ Kervi application anatomy
 Single file application
 ---------------------------
 
-Below you see the content of a *single file application* that controls the speed of a motor based on the cpu temperature. 
+Below you see the content of a *single file application* that controls the speed of a motor based on the CPU temperature. 
 
 myapp.py
 
@@ -147,16 +147,16 @@ in your application.
 
 The Application class prepares your application. It figures out
 if you are using a Raspberry Pi as your board and loads required
-driveres. It also loads a web server that serves the UI files to the browser. 
+drivers. It also loads a web server that serves the UI files to the browser. 
 
 ######################
 Dashboards (line 5-25)
 ######################
 
-Dashboards are as such not at part of your application logic but you need to
+Dashboards are as such not a part of your application logic but you need to
 tell kervi how you want to organize your dashboards in the browser. 
 You can have multiple dashboards in an application. It can be floors in a house
-if your are developing a house automation project or it can be a camera view and
+if you are developing a house automation project or it can be a camera view and
 system information if you are creating a robot.
 
 In the example above two dashboards are defined: APP and SYSTEM. 
@@ -168,10 +168,10 @@ Sensors (26-39)
 ###############
 
 Sensors are used to sense the world and readings from sensors are handled thru the Sensor Class. 
-You can program a sensor your self or you can utilize one of the ready made sensor drivers from the Kervi Device Library (KDL).
+You can program a sensor your self or you can utilize one of the ready-made sensor drivers from the Kervi Device Library (KDL).
 
-In the example above a *Cpu Load sensor* is fetched from KDL and applied to the Sensor class. 
-When the application is running the Sensor class polls *Cpu load sensor* device and notify other
+In the example above a *CPU Load sensor* is fetched from KDL and applied to the Sensor class. 
+When the application is running the Sensor class polls *CPU load sensor* device and notify other
 parts of the application via events. 
 
 In order to display the values from the sensor in the browser you need to link it to a dashboard and a panel.
@@ -186,7 +186,7 @@ A controller reacts to one or more inputs and generates one or more outputs.
 The input could come from the user via the web based UI, sensors or other application logic.
 
 The example above implements a fan controller that calculates speed of a fan by reading the temperature of a sensor.
-The controller only works on its interfaces and is agnostic to how it is linked to user interface and hardware. 
+a controller only works on its interfaces and is agnostic to how it is linked to user interface and hardware. 
 In that way it is easy to change hardware and UI without the need for recoding the controller.
 
 In order to do the calculation the controller uses the following inputs:
@@ -196,7 +196,7 @@ In order to do the calculation the controller uses the following inputs:
 * max_temp, if the temperature is greater that this temperature the fan should run at max speed.
 * active, if true the controller should calculate the speed. If false the fan should be turned off.
 
-In the span from trigger_temp to max_temp the controller will graduatly increase the speed.
+In the span from trigger_temp to max_temp the controller will gradually increase the speed.
 
 In __init__ ( the constructor) you define inputs and outputs.
 A controller input is defined by calling self.inputs.add and specify the id, name and type of the input::
@@ -219,17 +219,17 @@ The next step is to link the controller to the cpu sensor.
  
     FAN_CONTROLLER.temp.link_to(SENSOR_CPU_TEMP)
 
-Now the temp input listen to changes in cpu temperature, when the the temperature changes the input_changed event is fired.
+Now the temp input listen to changes in cpu temperature, when the temperature changes the input_changed event is fired.
 
 The other controller inputs are linked the dashboard where the user can control these parameters. 
-When the user changes one of the inputs the input_changed event is fired.
+When a user changes one of the inputs in the web ui then the input_changed event is fired in the python code.
 
 
 #########################################
 Linking controller outputs (line 110 - 113)
 #########################################
 
-In this example the the fan controller is linked to a DC motor that is controlled via a Adafruit motor hat.
+In this example the fan controller is linked to a DC motor that is controlled via an Adafruit motor hat.
 
 The dc motor is linked to fan_speed::
 
@@ -242,7 +242,7 @@ Go into action (line 115)
 ###########################
 
 The work so far have been to prepare your application to bring it into action you need to call APP.run().
-APP.run will start webserver load different modules.
+APP.run will start the web server and load different modules.
 To stop your application you press ctrl + c on the keyboard.
 
 ------------------------------
@@ -303,4 +303,4 @@ Distributed application
 It is possible to create a distributed kervi application where multiple computers and controllers Works together.
 One computer is the main computer where a kervi application is created.
 On the other computers kervi application modules are created that connects to the central kervi application.
-The web interface will update it self as modules starts and stops.
+The web interface will update itself as modules starts and stops.

@@ -10,7 +10,7 @@ Security
     Exposing your Kervi application directly on the internet by routing traffic from internet router to the Kervi web server 
     is strongly adviced against at the moment.
 
-    At this moment of development passwords and user names are send in clear text between browser and Kervi web server
+    At this moment of development passwords and user names are sent in clear text between browser and Kervi web server
     unless you enable TLS encryption.
 
 It is possible to secure your Kervi application with user authentication and encrypted communication between browser 
@@ -39,7 +39,7 @@ the password and groups as parameters for each user.
 
 You can use the groups in your python code to define who has access to panels and dynamcic values.
 
-I the snippet below the cpu sensor is only visible for users who belongs to the admin group
+In the snippet below the cpu sensor is only visible to users who belong to the admin group
 
 .. code:: python
 
@@ -64,8 +64,8 @@ but it is only members in the admins groups that can see the power panel.
 Anonymous access
 ----------------
 
-If no anonymous user is defined in the users.py file the web user will be prompted with a log in screen when accessing the UI.
-To enable anonymous access a the anonymous user to the users.py file
+If no anonymous user is defined in the users.py file, the web user will be prompted with a login screen when accessing the UI.
+To enable anonymous access add the anonymous user to the users.py file
 
  .. code: python
  
@@ -85,7 +85,7 @@ To enable anonymous access a the anonymous user to the users.py file
 
 Now the web ui will try to login as anonymous user when the users go to the UI web page. 
 All components that does not have the property user_groups set will be visible to the anonymous user.
-In addition components that belongs to any user groups specified for the anonymous user will be visible too.  
+In addition, components that belongs to any user groups specified for the anonymous user will be visible too.  
 
 .. topic:: Notice
 

@@ -7,15 +7,15 @@ prerequisites
 
 Kervi is a python framework and needs python 3.4+ and the python package manager pip. 
 
-The standard Raspberry Pi operating systems comes with python and pip preinstalled. 
+The standard Raspberry Pi operating system's comes with python and pip preinstalled. 
 If you are able to start your Raspberry Pi you are ready to install Kervi.
 
 If you install on other platforms like windows and linux you have to install python and pip. Please follow the instructions on python.org to get python installed. 
-Notice there are no native support for hardware when your install on these platforms but you will be able to
+Notice there are no native support for hardware when you install on these platforms but you will be able to
 create dashboards and let users interact with your python kervi application via a browser.
 
 There is a requirement for libjpeg-dev on certain versions of python on the raspberry pi.
-To besure of correct kervi installation please run these commands in a terminal window.
+To be sure of correct kervi installation please run these commands in a terminal window.
 
 ::
     
@@ -39,18 +39,18 @@ Other platforms::
 Create application
 ==================
 
-Next your create a folder for your application::
+Next create a folder for your application::
 
     mkdir myapp
     cd myapp
 
-After kervi is installed a commandline tool *kervi* is available that helps creates skeleton code for your Kervi apps.
-You have two choices when it comes to creation of kervi applications via the commandline tool.
+After kervi is installed a command line tool *kervi* is available that helps creates skeleton code for your Kervi apps.
+You have two choices when it comes to creation of kervi applications via the command line tool.
 
 Single file application
 -----------------------
 
-If you are new to Kervi or just wants to make a quick test application then a single file kervi application is a good chooice to get going.
+If you are new to Kervi or just wants to make a quick test application then a single file kervi application is a good choice to get going.
 You create the single file app via the following command in the terminal window::
 
     kervi create application myapp "My first app" --single_file_app

@@ -74,9 +74,9 @@ And call the action
 Actions with timeout
 --------------------
 
-By default an action is called synchronius and first returns with the result when the action is completed.
-If you expect your action to operate within a special time interval you can add the keyword parameter timeout to
-the action call. If the execution time exceeds the timeout a TimeoutError exception is raised.
+By default, an action is called synchronous and first returns with the result when the action is completed.
+If you expect your action to operate within a special time interval, you can add the keyword parameter timeout to
+the action call. If the execution time exceeds the timeout, a TimeoutError exception is raised.
 
 .. code:: python
 
@@ -103,7 +103,7 @@ If the action is defined in another process or module call this way:
 Asynchronous action call
 ------------------------
 
-It is possible to call an action asynchronously if your don't want to wait for the action to finish execution.
+It is possible to call an action asynchronously if you don't want to wait for the action to finish execution.
 Just set the keyword argument run_async to true.
 
 .. code:: python
@@ -111,11 +111,11 @@ Just set the keyword argument run_async to true.
     Actions["my_action"](run_async=True)
 
 
-Interupts
+Interrupts
 ---------
 
 Sometimes you need to signal a running action during execution. 
-To handle this situation you need to specify an interupt function for an action.
+To handle this situation you need to specify an interrupt function for an action.
 
 .. code:: python
 
@@ -129,11 +129,11 @@ To handle this situation you need to specify an interupt function for an action.
 
         print("my_action done")
 
-    @my_action.set_interupt
-    def my_action_interupt():
+    @my_action.set_interrupt
+    def my_action_interrupt():
         global terminate
         terminate = True
-        print("interupt my_action")
+        print("interrupt my_action")
 
     
     #call action
@@ -143,20 +143,20 @@ To handle this situation you need to specify an interupt function for an action.
     time.sleep(5)
 
     #signal that the action should terminate
-    Actions["my_action"].interupt() 
+    Actions["my_action"].interrupt() 
 
 
-Interupts support parameters
+Interrupts support parameters
 
 .. code:: python
 
-    @my_action.set_interupt
-    def my_action_interupt(p1):
+    @my_action.set_interrupt
+    def my_action_interrupt(p1):
         global terminate
         terminate = True
         print("interupt my_action:", p1)
 
-    Actions["my_action"].interupt("P 1")
+    Actions["my_action"].interrupt("P 1")
 
 Linking to dashboards
 ---------------------
@@ -185,7 +185,7 @@ You can send parameters to the action.
     my_action.link_to_dashboard("app", "gate", action_parameters=["x"])
 
 
-If an interupt function is set for the action it will be called when the button is released. 
+If an interrupt function is set for the action it will be called when the button is released. 
 
 .. code:: python 
 
@@ -195,13 +195,13 @@ If an interupt function is set for the action it will be called when the button 
     def my_action(p):
         print("my_action is called with:", p)
 
-    @my_action.set_interupt
-    def my_action_interupt():
-        print("my_action interupt called")
+    @my_action.set_interrupt
+    def my_action_interrupt():
+        print("my_action interrupt called")
 
     my_action.link_to_dashboard("app", "gate", action_parameters=["x"])
 
-You are able to specify parameters that should be send in the interupt.
+You are able to specify parameters that should be send in the interrupt.
 
 .. code:: python 
 
@@ -211,11 +211,11 @@ You are able to specify parameters that should be send in the interupt.
     def my_action(p):
         print("my_action is called with:", p)
 
-    @my_action.set_interupt
-    def my_action_interupt(p):
-        print("my_action interupt called: ", p)
+    @my_action.set_interrupt
+    def my_action_interrupt(p):
+        print("my_action interrupt called: ", p)
 
-    my_action.link_to_dashboard("app", "gate", action_parameters=["x"], interupt_parameters=["i"])
+    my_action.link_to_dashboard("app", "gate", action_parameters=["x"], interrupt_parameters=["i"])
 
 Other keyword parameters you can use in link_to_dashboard:
 
@@ -243,8 +243,8 @@ Other keyword parameters you can use in link_to_dashboard:
 
     * *action_parameters* (``list``) -- list of parameters to pass to the action.
 
-    * *interupt_enabled* (``bool``) -- If true the button will send interupt to action on off. Default true if an interupt is specified for the action.
-    * *interupt_parameters* (``list``) -- List of parameters to pass to the interupt function of the action.
+    * *interrupt_enabled* (``bool``) -- If true the button will send interrupt to action on off. Default true if an interupt is specified for the action.
+    * *interrupt_parameters* (``list``) -- List of parameters to pass to the interrupt function of the action.
 
 
 System actions
@@ -404,7 +404,7 @@ of the gate speed could be set.
 .. image:: images/gate_controller_settings.png
     :width: 35%
 
-Multiprocess
+Multi process
 ------------
 
 This example shows how to set up at simple robot and control it via an external script of commands.

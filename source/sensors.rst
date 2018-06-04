@@ -3,7 +3,7 @@
 Sensors
 =======
 
-Sensors in Kervi are are handled via the class Sensor that handles reading from different kind of probes and devices. 
+Sensors in Kervi are handled via the class Sensor that handles reading from different kind of probes and devices. 
 
 Kervi Device library
 --------------------
@@ -31,7 +31,7 @@ A sensor is linked to a dashboard by calling the method link_to_dashboard.
     SENSOR_1.link_to_dashboard("system", "cpu", type="value", size=2, link_to_header=True)
     SENSOR_1.link_to_dashboard("system", "cpu", type="chart", size=2)
 
-Beside from linking to dashboards an sensor may also be linked to controller inputs.
+Beside from linking to dashboards a sensor may also be linked to controller inputs.
 
 .. code-block:: python
 

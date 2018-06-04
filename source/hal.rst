@@ -3,7 +3,7 @@ Hardware and devices
 
 A central feature in Kervi is platform independent access to hardware and devices.
 Kervi abstracts access to various systems like GPIO and I2C on your board in order to make Kervi solutions
-portable. At the moment there is drivers for Raspberry Pi with more to come.
+portable. At the moment there are drivers for Raspberry Pi with more to come.
 
 The kervi device library contains device drivers to common sensors, displays, gpio extenders. 
 
@@ -15,7 +15,7 @@ It is possible to install a platform driver via pip.::
     pip install kervi[rpi]
 
 The framework looks for installed platform driver upon application start and
-initialise GPIO, I2C ect.
+initialize GPIO, I2C ect.
 
 GPIO
 ----
@@ -51,12 +51,12 @@ for installed Kervi platform drivers and loads the GPIO driver.
 I2C
 ---
 
-I2C is used when communicating with i2c serial devices like sensors, displayes and motor controllers.
+I2C is used when communicating with i2c serial devices like sensors, displays and motor controllers.
 
 If a device exists in the device library there is no need
 to work with i2c directly as the device driver handles i2c communication.
 
-If a device is not present in the device library you could make your own device driver.
+If a device is not present in the device library, you could make your own device driver.
 
 Below is an example on using I2C that implements a LUX sensor that can be used in a 
 Kervi sensor (this is the actual code from the device library).
@@ -140,13 +140,13 @@ Kervi sensor (this is the actual code from the device library).
 SPI
 ---
 
-The SPI interface is comming.
+The SPI interface is coming.
 
 
 Device library
 --------------
 
-It is possible to use ready made devices from the kervi device library.
+It is possible to use ready-made devices from the kervi device library.
 Below is an example that uses the light sensor TLS2561.
 
 For a complete list take a look at github <https://github.com/kervi/kervi-devices>  

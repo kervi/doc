@@ -166,7 +166,7 @@ The sensor is linked twice first to the header with the animation and into the b
 Controller pads
 ===============
 
-Each dashboard has two controller pads each with an x and y axis. 
+Each dashboard has two controller pads each with an x and y-axis. 
 It is possible to link NumberValue values to these axes
 by using the panel names left_pad_x, left_pad_y, right_pad_x, right_pad_y.
 
@@ -179,6 +179,6 @@ GPIO and boolean values
 
 Linked output components like digital GPIO channels and boolean controller input/outputs
 are displayed as a switch button or push button.
-If the dynamic value is an GPIO input channel or a controller output the button is read only.
+If the GPIO pin is an input channel or a controller output the button is read only.
 
-If the dynamic value is a output GPIO channel or a controller input the user will be able to switch/push the button. 
+If GPIO pin is an output channel or a controller input the user will be able to switch/push the button. 

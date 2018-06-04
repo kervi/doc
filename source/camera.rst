@@ -42,7 +42,7 @@ It is possible to pass values for size and frames per second when you create the
 **Source**
 
 In the examples above the camera source is not specified and Kervi looks for the default camera. On a Raspberry Pi it will be
-the on board camera. If you want to use another camera source than the default you need to specify it. 
+the on board camera. If you want to use another camera source than the default, you need to specify it. 
 
 .. code:: python
     

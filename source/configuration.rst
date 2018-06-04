@@ -2,12 +2,12 @@
 Configuration
 =============
 
-Your kervi application is configured via an configuration file.
+Your kervi application is configured via a configuration file.
 Kervi uses the following naming convention for configuration files *[script name].config.json*.
 If your kervi application is located in my_app.py it will look for configuration in *my_app.configuration.json*.
 
 
-Below you see an example of a configuration file created via cli .
+Below you see an example of a configuration file created via cli.
 Lines that starts with # are ignored and default values used.
 
 .. code:: javascript

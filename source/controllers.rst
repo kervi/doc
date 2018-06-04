@@ -3,11 +3,11 @@ Controllers
 ==============
 
 Controllers is the fun part of your Kervi application this is where you code the application logic.
-Your controller acts upon input from users, GPIO events or the underlaying os and initiates different actions based on the input.
+Your controller acts upon input from users, GPIO events or the underlying os and initiates different actions based on the input.
 
 Basic controllers manages motors, light, servos and so on but you can also build more advanced controllers
 for *line following* and *self navigation*.
-As your application grows your application will contain multiple controllers. 
+As your application grows it will contain multiple controllers. 
 
 Input and output interfaces
 ===========================

@@ -20,15 +20,14 @@ Value linking is the process of connect an output KerviValue to a value that is 
 
 *Direct linking*
 
-In the example below is a short snippet that shows how to make
-a self balancing robot. This is done as direct linking where all values are
+The example below shows how to make a self balancing robot. This is done as direct linking where all values are
 in the same process.
 
-The orientation of the robot is obtained by a LSM9DS0 sensor by reading its gyros to establish the robots
-orientation. The output of the sensor is linked to a pid controller that calculates
+The orientation of the robot is obtained by a LSM9DS0 sensor.
+The output of the sensor is linked to a pid controller that calculates
 how much the wheels must be moved to keep the robot in balance.
-The pid controllers result is send to the steering controller that calculates much speed each motor shuld have
-and send the calculated motor speeds to the motor controller.
+The result of the pid controller is sent to the steering controller that calculates the speed of each motor
+and sends the calculated motor speeds to the motor controller.
 
 .. code:: python
 
@@ -58,7 +57,7 @@ and send the calculated motor speeds to the motor controller.
 
 It is not possible to use direct linking if the two values that should
 be connected are in different processes or maybe on different devices/computers. 
-In this situation it is possible use utilize the buildin inter process communication system
+In this situation it is possible use utilize the builtin inter process communication system
 in Kervi.
 
 In the snippet below the link is done by passing the id of the sensor in the call to link_to.
