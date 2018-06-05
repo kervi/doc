@@ -154,7 +154,7 @@ Interrupts support parameters
     def my_action_interrupt(p1):
         global terminate
         terminate = True
-        print("interupt my_action:", p1)
+        print("interrupt my_action:", p1)
 
     Actions["my_action"].interrupt("P 1")
 
@@ -243,7 +243,7 @@ Other keyword parameters you can use in link_to_dashboard:
 
     * *action_parameters* (``list``) -- list of parameters to pass to the action.
 
-    * *interrupt_enabled* (``bool``) -- If true the button will send interrupt to action on off. Default true if an interupt is specified for the action.
+    * *interrupt_enabled* (``bool``) -- If true the button will send interrupt to action on off. Default true if an interrupt is specified for the action.
     * *interrupt_parameters* (``list``) -- List of parameters to pass to the interrupt function of the action.
 
 
@@ -363,7 +363,7 @@ There are to two actions move_gate and stop_gate these are linked to the "gate" 
                     else:
                         print("Gate stopped")
 
-            @move_gate.set_interupt
+            @move_gate.set_interrupt
             def move_gate_interrupt(self):
                 print("stop gate:")
                 self._stop_move = True

@@ -91,8 +91,8 @@ myapp.py
                 self._active = True
                 self._calc_fan_speed()
             
-            #action interupt call this and the controller stops monitoring the temperature input
-            @active.set_interupt
+            #action interrupt call this and the controller stops monitoring the temperature input
+            @active.set_interrupt
             def stop(self):
                 self._active = False
                 self._calc_fan_speed()
