@@ -1,3 +1,4 @@
+.. _device_sensors:
 
 =======
 Sensors

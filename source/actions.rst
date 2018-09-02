@@ -247,6 +247,72 @@ Other keyword parameters you can use in link_to_dashboard:
     * *interrupt_parameters* (``list``) -- List of parameters to pass to the interrupt function of the action.
 
 
+Linking to values
+-----------------
+
+It is possible to link an action to gpio or sensors or other kervi values.
+When the value of linked source changes the Action is executed or interrupted.
+
+.. code:: python
+
+    my_action.link_to(GPIO["GPIO2"])
+
+In the code above the action is linked to gpio2 if it goes high it executes the action.
+When the gpio2 goes low the action is interrupted.
+
+Here is another example where the action is linked to a sensors.
+When the sensor value is 10 the action is executed.
+
+.. code:: python  
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = 10
+    )
+
+You can also use an lambda expression as trigger.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = lambda x: x > 10
+    )
+
+If you want to pass the value of the linked source you can do by setting the pass_value parameter
+Now the action is called every time the source changes.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        pass_value = true
+    )
+
+It is also possible to pass aditional parameters to the action when it is triggered.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = lambda x: x > 10,
+        action_parameters = ["20", 30]
+    )
+
+You can also specify when the interrupt should fire.
+
+.. code:: python
+
+    my_action.link_to(
+        temp_sensor,
+        trigger_value = lambda x: x > 10,
+        action_parameters = ["20", 30]
+        trigger_interrupt_value: lambda x: x < 5,
+        interrupt_parameters = [0]
+    )
+
+
+
 System actions
 --------------
 
@@ -287,8 +353,10 @@ Complete example
 -----------------
 
 This is a complete example that shows a gate controller that controls a motor and have two end stop switches.
+The end stops are linked to GPIO2 and GPIO3. 
 
 There are to two actions move_gate and stop_gate these are linked to the "gate" panel on the app dashboard.
+The move_gate action is also linked GPIO4 and GPIO5. When GPIO4 is triggered the gate opens and closes when gpio5 is triggered.
 
 .. code:: python
 
@@ -368,7 +436,7 @@ There are to two actions move_gate and stop_gate these are linked to the "gate" 
                 print("stop gate:")
                 self._stop_move = True
 
-            def on_start(self):
+            def controller_start(self):
                 print("gate controller is started")
                 self.gate_motor_speed.value = 0
 
@@ -392,6 +460,9 @@ There are to two actions move_gate and stop_gate these are linked to the "gate" 
 
         gate_controller.lo_end_stop.link_to(GPIO["GPIO2"])
         gate_controller.hi_end_stop.link_to(GPIO["GPIO3"])
+
+        gate_controller.move_gate.link_to(GPIO["GPIO4"], action_parameters = [True])
+        gate_controller.move_gate.link_to(GPIO["GPIO5"], action_parameters = [False])
 
         APP.run()
 

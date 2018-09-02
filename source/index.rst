@@ -48,7 +48,7 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
         APP.run()
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :includehidden:
    :caption: Contents:
    :hidden:
@@ -62,8 +62,10 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    actions
    camera
    motors
+   display
    configuration
    security
+   devices/index
    hal
    ipc
    cli
