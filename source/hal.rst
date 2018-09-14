@@ -146,10 +146,8 @@ The SPI interface is coming.
 Device library
 --------------
 
-It is possible to use ready-made devices from the kervi device library.
+It is possible to use ready-made devices from the :ref:`kervi device library <kdl>` .
 Below is an example that uses the light sensor TLS2561.
-
-For a complete list take a look at github <https://github.com/kervi/kervi-devices>  
 
 .. code-block:: python
 

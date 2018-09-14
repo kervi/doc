@@ -1,12 +1,13 @@
+.. _kdl:
+
 Device library
 ==============
 
 
-Bla Bla
+The kervi device library contains drivers for common devices.
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
    :glob:
    
    *

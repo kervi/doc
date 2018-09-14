@@ -16,7 +16,7 @@ Features of the framework are:
 * Easy dashboard setup.
 * Dashboard UI is responsive and scales from mobile phones to desktop.
 * Multi process oriented by spreading over more than one core.
-* Multi device oriented by connecting multiple Raspberry Pi's in one large application 
+* Multi device oriented by connecting multiple Raspberry Pi's in one large application. 
 * No web development knowledge is required as dashboard layout is handled in python. 
 
 Below is a complete example that shows how to display a sensor on a dashboard with a chart
@@ -65,8 +65,10 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    display
    configuration
    security
-   devices/index
    hal
+   devices/index
+   multi_process
+   distributed
    ipc
    cli
    contribute

@@ -1,3 +1,5 @@
+.. _configuration:
+
 =============
 Configuration
 =============
@@ -77,7 +79,7 @@ Lines that starts with # are ignored and default values used.
     }
 
 Default values are used if out commented or omitted from the file.
-You do not have to specify all values in a config file you just specify the ones that matters
+You do not have to specify all values in a config file you just specify the ones that matters.
 
 .. code:: javascript
 

@@ -85,7 +85,7 @@ Value link transformation
 
 It is possible to transform the values that are passed in the link by apply a transformation
 function or lambda expression. This is useful if the value ranges of the two
- values are not the same or if you need to change the sign of the
+values are not the same or if you need to change the sign of the
 values that are exchanged in the link.
 
 Below is an example where a servo motor is mounted opposite to the on screen pan
@@ -104,4 +104,4 @@ Kervi values may be linked to dashboards.
 When linked they will show up as either inputs that the user can change or
 a read only representation. 
 
-Details about dashboard linking are found in the dashboard section.  
+Details about dashboard linking are found in the :ref:`Dashboards section <dashboards>`.  

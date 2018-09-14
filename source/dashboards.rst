@@ -1,3 +1,5 @@
+.. _dashboards:
+
 ==========
 Dashboards
 ==========
@@ -61,7 +63,7 @@ When a component is linked to a panel you are able to set the width and height o
 
 
 Sensors and numbers
-***************************
+*******************
 
 Linked output components like sensors, controller outputs and analog GPIO input channels can displayed in different ways: just value, value with sparkline, as an animated icon, chart or different kind of gauges.
 

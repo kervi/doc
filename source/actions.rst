@@ -289,7 +289,7 @@ Now the action is called every time the source changes.
         pass_value = true
     )
 
-It is also possible to pass aditional parameters to the action when it is triggered.
+It is also possible to pass additional parameters to the action when it is triggered.
 
 .. code:: python
 
@@ -317,7 +317,7 @@ System actions
 --------------
 
 When the kervi application has loaded and started all processes it calls the app_main action this is your hook where you can
-start your application logic. In the way app_exit action is called upon termination of the kervi application.
+start your application logic. In the same way app_exit action is called upon termination of the kervi application.
 
 It is optional for you to define these actions in your application.
 
@@ -330,7 +330,7 @@ It is optional for you to define these actions in your application.
 
     @action
     def app_exit():
-        #application logic that cleans up
+        #application logic that clean up and reset devices
 
 You can control the application via the following actions
 

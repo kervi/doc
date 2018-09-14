@@ -8,7 +8,7 @@ Most of the project are clean python projects except from the web interface proj
 Development enviroment
 ======================
 
-`GIT <https://git-scm.com/downloads>`_ is used to handle all soruce code via github.com.
+`GIT <https://git-scm.com/downloads>`_ is used to handle all source code via github.com.
 If you want to paticipate install GIT and create an account on github.com 
 
 `Visual Studio Code <https://code.visualstudio.com/download>`_ is used for all projects and VS code settings for each project are stored in the github projects.

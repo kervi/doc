@@ -1,11 +1,12 @@
+.. _device_displays:
 ========
 Displays
 ========
 
 Kervi has support for displaying text and values on displays.
 This is handled via the Display class.
-The Display class recognise the type of the connected display and handles the differences independenly
-this makes it easy to change the display driver with very few changes to the code.
+The Display class recognize the type of the connected display and handles the differences independently.
+This makes it easy to change the display driver with very few changes to the code.
 
 The Display class also supports text templates where it is possible to specify and link sensors and other kervi values.
 
@@ -25,7 +26,7 @@ Any text that is entered in the text box is displayed in the display.
 
     APP.run()
 
-Below is an example where cpu load and temp is displayed dynamicaly.
+Below is an example where cpu load and temp is displayed dynamically.
 This is done via DisplayPages.
 A DisplayPage holds an text template and dynamic links to values that should be displayed.
 When the values of the linked values changes the display is updated.

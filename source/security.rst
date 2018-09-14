@@ -2,16 +2,16 @@
 Security
 ========
 
-.. topic:: Notice
+.. warning::
 
     The security features of the Kervi framework has not been reviewed by any external experts and
     use is at own risk. 
     
     Exposing your Kervi application directly on the internet by routing traffic from internet router to the Kervi web server 
-    is strongly adviced against at the moment.
+    is strongly advised against at the moment.
 
     At this moment of development passwords and user names are sent in clear text between browser and Kervi web server
-    unless you enable TLS encryption.
+    unless you enable TLS encryption (see below).
 
 It is possible to secure your Kervi application with user authentication and encrypted communication between browser 
 and the kervi web server.
@@ -19,25 +19,30 @@ and the kervi web server.
 Users
 =====
 
-When a kervi application starts it looks for at file named users.py with the following format:
+User access in the ui is controlled via :ref:`Kervi configuration <configuration>` in the authentication section
 
 .. code:: python
 
-    settings = {
-        "tim":{
-            "password":"1234",
-            "groups":["admin", "group1"]
-        },
-        "test":{
-            "password":"4321",
-            "groups":["group2"]
+    "authentication":{
+        "enabled": true,
+        "users" : {
+            "anonymous":{
+                "enabled": true
+            },
+            "admin":{
+                "password":"password",
+                "groups":["admin"]
+            }
+            "joe":{
+                password: "12345"
+                groups: ["users"]
+            }
         }
-    }
 
-As seen above each user is defined whit the user name as key in the settings dictionary and
+As seen above each user is defined whit the user name as key in the configuration section and
 the password and groups as parameters for each user.
 
-You can use the groups in your python code to define who has access to panels and dynamcic values.
+You can use the groups in your python code to define who has access to dashboards, panels and sensors.
 
 In the snippet below the cpu sensor is only visible to users who belong to the admin group
 
@@ -58,36 +63,31 @@ In the same way dashboards and panels may be restricted to certain groups as sho
         user_groups=["admins", "users"]
     )
 
-In the snippet above users that is member of the groups admins or users have access to the system dashboard 
-but it is only members in the admins groups that can see the power panel.
+In the snippet above users that is member of the groups *admins* or *users* have access to the system dashboard 
+but it is only members in the *admins* groups that can see the power panel.
 
 Anonymous access
 ----------------
 
-If no anonymous user is defined in the users.py file, the web user will be prompted with a login screen when accessing the UI.
-To enable anonymous access add the anonymous user to the users.py file
+Anonymous access is controlled via the anonymous user in the authentication configuration. 
 
- .. code: python
+ .. code:: python
  
-    settings = {
-        "anonymous":{
-            "groups":["anon-group"]
-        },
-        "tim":{
-            "password":"1234",
-            "groups":["admin", "group1"]
-        },
-        "test":{
-            "password":"4321",
-            "groups":["group2"]
+    "authentication":{
+        "users" : {
+            "anonymous":{
+                "enabled": true
+            }
         }
     }
+    
 
-Now the web ui will try to login as anonymous user when the users go to the UI web page. 
+The web user will be prompted with a login screen when accessing the UI if anonymous access is disabled.
+If anonymous access is enabled the web ui will try to login as anonymous user when the users go to the UI web page. 
 All components that does not have the property user_groups set will be visible to the anonymous user.
 In addition, components that belongs to any user groups specified for the anonymous user will be visible too.  
 
-.. topic:: Notice
+.. note::
 
     Authentication only apply to the web users. 
     Internal communication in the kervi applications python code is not affected by user authentication.
@@ -98,14 +98,14 @@ Encryption
 ==========
 
 To encrypt communication between browser and Kervi web server a certificate is needed. 
-The Kervi web server looks for the file encryption.py upon start up.
-If the file is present the settings in file is used to secure the communication between browser and kervi server.
+Encryption is enabled via :ref:`Kervi configuration <configuration>` in the encryption section.  
 
 .. code:: python
 
-    settings={
-        "useSSL": False, # enables or disables encryption
-        "certFile": "kervi.cert",
-        "keyFile": "kervi.key"
+    "encryption":{
+        "enabled": true,
+        "use_ssl": false,
+        "cert_file": "path to cert file",
+        "key_file":  "path to key file"
     }
 
