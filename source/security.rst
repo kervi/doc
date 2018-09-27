@@ -16,26 +16,39 @@ Security
 It is possible to secure your Kervi application with user authentication and encrypted communication between browser 
 and the kervi web server.
 
-Users
-=====
+User access in the ui is controlled via :ref:`Kervi configuration <configuration>` in the plugins/authentication section
 
-User access in the ui is controlled via :ref:`Kervi configuration <configuration>` in the authentication section
+Simple user management
+======================
+
+Kervi comes with a simple authentication plugin where users are defined in config.
+You enable this plugin by setting kervi.plugin.authentication.plain to true.
 
 .. code:: python
 
-    "authentication":{
-        "enabled": true,
-        "users" : {
+    "plugins":{
+        "authentication": {
+            "kervi.plugin.authentication.plain": True
+        }
+
+This plugin looks for uses in the plain_users section.
+
+.. code:: python
+
+    "plain_users": {
             "anonymous":{
-                "enabled": true
+                "enabled": True,
+                "groups":[]
             },
             "admin":{
-                "password":"password",
-                "groups":["admin"]
-            }
-            "joe":{
-                password: "12345"
-                groups: ["users"]
+                "enabled": True,
+                "password":"",
+                "groups":["admin"],
+                "name": "Administrator",
+                "addresses": {
+                    "email": "admin@example.com",
+                    "phone": ""
+                }
             }
         }
 
@@ -69,17 +82,16 @@ but it is only members in the *admins* groups that can see the power panel.
 Anonymous access
 ----------------
 
-Anonymous access is controlled via the anonymous user in the authentication configuration. 
+Anonymous access is controlled via the anonymous user in the plain_users configuration section. 
 
  .. code:: python
- 
-    "authentication":{
-        "users" : {
-            "anonymous":{
-                "enabled": true
-            }
+     
+    "plain_users": {
+        "anonymous":{
+            "enabled": True
         }
     }
+    
     
 
 The web user will be prompted with a login screen when accessing the UI if anonymous access is disabled.

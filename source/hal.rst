@@ -10,10 +10,6 @@ The kervi device library contains device drivers to common sensors, displays, gp
 Select platform
 ---------------
 
-It is possible to install a platform driver via pip.::
-    
-    pip install kervi[rpi]
-
 The framework looks for installed platform driver upon application start and
 initialize GPIO, I2C ect.
 

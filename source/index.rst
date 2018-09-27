@@ -69,6 +69,7 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    devices/index
    multi_process
    distributed
+   messaging
    ipc
    cli
    contribute

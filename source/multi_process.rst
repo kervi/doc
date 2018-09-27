@@ -6,13 +6,14 @@ In python it is possible to have multiple threads in a process but only one is e
 This may impact the performance of your kervi application if you have a lot of sensors, cameras and controllers in your (single file) application.
 Kervi makes it easy to overcome this limitation by spreading your code over more than one process and thereby makes the separated process code truly concurrent.
 Another advantage is that the underlaying operative system may spread the processes over available cpu cores and that makes your application more responsive.  
-This is done by creating python modules in sub folders relative to your main kervi python script.
 
 The kervi framework uses its interprocess communications system(IPC) to connect the different processes in your application and transmit sensor values and call actions commands across process boundaries.
 
 The kervi framework spawns two processes of its own, one for ipc and one for the web server that servers the dashboards. 
 
-Belove is the folder structure of a kervi project with multiple python modules
+Code that should be executed in its own process should be placed in sub folders relative to your main kervi python script.
+
+Below is the folder structure of a kervi project with multiple python modules.
 
 .. code::
 
@@ -89,7 +90,7 @@ controllers/__init__.py
 
 controllers/fan_controller.py
 
-..code:: python
+.. code:: python
 
     from kervi.controllers.controller import Controller
     from kervi.values import NumberValue

@@ -29,7 +29,7 @@ Open a terminal window and run the pip command below.
 
 Raspberry Pi::
 
-    sudo pip3 install kervi[rpi]
+    sudo pip3 install kervi
 
 Other platforms::
 
@@ -53,7 +53,7 @@ Single file application
 If you are new to Kervi or just wants to make a quick test application then a single file kervi application is a good choice to get going.
 You create the single file app via the following command in the terminal window::
 
-    kervi create application myapp "My first app" --single_file_app
+    kervi create application myapp "My first app" --single-file-app
 
 
 Multi process/file application
