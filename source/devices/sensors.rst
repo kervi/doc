@@ -133,6 +133,34 @@ This driver combines all sensors in the LSM9DS0 into one sensor with three dimen
 
     APP.run()
 
+
+
+-------
+Battery
+-------
+
+
+CW2015 (I2C, Rpi power pack hat)
+---------------------------
+
+CW2015 is a single channel Lipo battery manager where it is possible to read the voltage and capacity of the battery.
+
+.. code:: python
+
+    from kervi.application import Application
+    APP = Application()
+
+    from kervi.sensors.sensor import Sensor
+    from kervi.devices.sensors.CW2015 import CW2015VoltageDeviceDriver, CW2015CapacityDeviceDriver
+    
+    sensor = Sensor("CW2015_voltage", "CW2015 voltage", CW2015VoltageDeviceDriver())
+    sensor.link_to_dashboard()
+
+    sensor1 = Sensor("CW2015_capacity", "CW2015 capacity", CW2015CapacityDeviceDriver())
+    sensor1.link_to_dashboard()
+
+    APP.run()
+
 -----------
 Light (lux)
 -----------
