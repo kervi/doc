@@ -1,3 +1,4 @@
+.. _multi_process:
 ====================
 Process distribution
 ====================
@@ -32,8 +33,7 @@ which modules to load.
 .. code:: python
     
     from kervi.application import Application
-    import kervi.utility.nethelper as nethelper
-
+    
     if __name__ == '__main__':
         
         APP = Application({

@@ -349,6 +349,49 @@ You can control the application via the following actions
     Actions["app.reboot"]
 
 
+You can connect a battery sensor to the *shutdown action* and initiate a shutdown of your device when the battery running low.
+
+.. code:: python
+
+    from kervi.application import Application
+
+        APP = Application()
+        
+        from kervi.sensors.sensor import Sensor
+        from kervi.devices.sensors.CW2015 import CW2015CapacityDeviceDriver
+    
+        capacity_sensor = Sensor("CW2015_capacity", "CW2015 capacity", CW2015CapacityDeviceDriver())
+        
+        #link sensor to action.
+        APP.actions.shutdown.link_to(capacity_sensor, trigger_value=lambda x: x<10)
+
+        #display a battery icon in the header of your application. 
+        capacity_sensor.set_ui_parameter("value_icon", [
+            {
+                "range":[0, 5],
+                "icon":"battery-empty"
+            },
+            {
+                "range":[5, 25],
+                "icon":"battery-quarter"
+            },
+            {
+                "range":[20, 50],
+                "icon":"battery-half"
+            },
+            {
+                "range":[5, 75],
+                "icon":"battery-three-quarters"
+            },
+            {
+                "range":[75, 100],
+                "icon":"battery-full"
+            }
+        ])
+        capacity_sensor.link_to_dashboard("*", "header_right", display_unit=False, show_sparkline=False, show_value=False)
+
+        APP.actions.shutdown
+
 Complete example
 -----------------
 
@@ -502,7 +545,7 @@ robot.py is a kervi application that you should execute on your Raspberry pi, wh
         steering.right_speed.link_to(motor_board.dc_motors[1])
 
         @action
-        def app_main():
+        def app_exit():
             steering.stop()
 
 The other python script robot_tasks.py is a kervi module that connects to the

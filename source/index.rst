@@ -10,14 +10,16 @@ It runs on all platforms that supports Python and have hardware support for Rasp
 Wire up sensors, controllers and other devices to your Raspberry PI and link them to web based dashboards
 and internal application logic.
 
+You don't need any knowledge about web servers, html or web programming. You configure the ui of your kervi application
+in python code and the framework creates the web ui.
 
 Features of the framework are:
 
-* Python classes for handling sensor readings and display on dashboards.
+* Python classes for handling sensors, displays, motors, gpio and other hardware.
 * Python classes for handling user interactions from controllers on dashboards.
 * Integrated camera handling (Raspberry PI camera at the moment)
 * Device driver library for common devices 
-* Easy dashboard setup.
+* Very easy dashboard setup.
 * Dashboard UI is responsive and scales from mobile phones to desktop.
 * Multi process oriented by spreading over more than one core.
 * Multi device oriented by connecting multiple Raspberry Pi's in one large application. 
@@ -63,7 +65,8 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    multi_process
    distributed
    messaging
-   ipc
+   service
    cli
+   ipc
    contribute
    kervi_api
