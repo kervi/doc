@@ -48,8 +48,8 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    :caption: Contents:
    :hidden:
 
-   getstarted
-   overview
+   install
+   getstarted/index
    dashboards
    sensors
    controllers

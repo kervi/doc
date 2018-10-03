@@ -1,88 +1,53 @@
-=================================
+===========
 Get started
-=================================
+===========
 
-prerequisites
-=============
+This section shows some of the core concepts in the Kervi framework.
+Most examples runs on any platform supporting Python.  
 
-Kervi is a python framework and needs python 3.4+ and the python package manager pip. 
+Hello world
+===========
 
-The standard Raspberry Pi operating system's comes with python and pip preinstalled. 
-If you are able to start your Raspberry Pi you are ready to install Kervi.
+Any Kervi application starts with the Application class.
 
-If you install on other platforms like windows and linux you have to install python and pip. Please follow the instructions on python.org to get python installed. 
-Notice there are no native support for hardware when you install on these platforms but you will be able to
-create dashboards and let users interact with your python kervi application via a browser.
+create a python file my_app.py with the content below.
 
-There is a requirement for libjpeg-dev on certain versions of python on the raspberry pi.
-To be sure of correct kervi installation please run these commands in a terminal window.
+.. code:: Python
+
+    from kervi.application import Application
+    
+    app = Application()
+    app.run()
+
+
+Run the file 
+
+.. role:: green
+
+.. raw:: html
+
+    <style> .green {color:green} </style>
+
+
 
 ::
-    
-    sudo apt-get update
-    sudo apt-get install libjpeg-dev
 
-Install
-========
-
-Open a terminal window and run the pip command below. 
-
-Raspberry Pi::
-
-    sudo pip3 install kervi
-
-Other platforms::
-
-    pip3 install kervi
+    >python3 my_app.py
+    Starting kervi application
+    IPC address: tcp://192.168.43.21:9500
+    loaded plugin: kervi.plugin.storage.sqlite_temp
+    loaded plugin: kervi.plugin.storage.sqlite
+    platform driver: kervi.platforms.windows
+    load interprocess communication
+    start websocket:  192.168.43.21 9000
+    Listining for discovery requests on port: 9434
+    :green:`Your Kervi application is ready at http://192.168.43.21:8080`
+    Press ctrl + c to stop your application
 
 
-Create application
-==================
+That is a lot of output for two lines of code. 
+The important line is "Your application is ready at http://192.168.43.21:8080"
+Open a browser and go to that address
 
-Next create a folder for your application::
-
-    mkdir myapp
-    cd myapp
-
-After kervi is installed a command line tool *kervi* is available that helps creates skeleton code for your Kervi apps.
-You have two choices when it comes to creation of kervi applications via the command line tool.
-
-Single file application
------------------------
-
-If you are new to Kervi or just wants to make a quick test application then a single file kervi application is a good choice to get going.
-You create the single file app via the following command in the terminal window::
-
-    kervi create application myapp "My first app" --single-file-app
-
-
-Multi process/file application
-------------------------------
-
-If you are planning to build a robot or home automation system it is recommended to create a normal Kervi application. 
-Such an application consists of several files and the Kervi framework is able to spread the load on all the cores on your board. 
-
-To create a full kervi application write the following command in the terminal::
-    
-    kervi create application myapp "My first app"
-
-
-Start application
------------------
-
-You start your new app by executing:: 
-
-    python3 myapp.py
-
-The following output should be displayed (example)::
-
-    Starting kervi application, please wait
-    load sensors
-    load controllers
-    load cameras
-    init IPC
-    Your Kervi application is ready at http://192.168.0.120:8080
-
-If you enter the url into at browser you should see something like this
-
-.. image:: images/dashboard.png
+.. image:: images/hello_world.png
+    :width:  50%
