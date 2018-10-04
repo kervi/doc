@@ -1,3 +1,4 @@
+.. _kdl_sensors:
 =======
 Sensors
 =======

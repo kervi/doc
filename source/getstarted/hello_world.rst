@@ -2,7 +2,7 @@
 Hello world
 ===========
 
-The hart of a kervi application is the Application class.   
+The heart of a kervi application is the Application class.   
 You must create an Application instance as the very first  operation 
 in your main application script. 
 
@@ -50,4 +50,4 @@ Open a browser and go to that address
 .. image:: ../images/hello_world.png
 
 Not the most inspiring application but now you are started. 
-Proceed to the next section and see how you add some content. 
+Proceed to the next chapter and see how you add some content. 

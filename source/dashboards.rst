@@ -6,9 +6,7 @@ Dashboards
 
 An application may define one or more dashboards. If it is a home automation application
 A dashboard could be a room or a floor.
-
 Each dashboard contains one or more panels where it is possible to link sensors, controllers, camera and other components.
-
 The dashboards are responsive and adjust to the width of the browser. Below is the same dashboard in mobile and browser view. 
 
 .. image:: images/dashboard_mobile.png
@@ -47,6 +45,9 @@ A kervi component is linked to a panel by calling the link_to_dashboard method o
 This method takes several parameters that specify how the component should be displayed.
 
 When a component is linked to a panel you are able to set the width and height of the component it could be as a percentage or pixels.
+
+The kervi framework creates a default dashboard if no dashboards has been defined in your app.
+In the same way panels are created on the fly if the call to link_to_dashboard doesn't include panel name. 
 
 
 .. code-block:: python

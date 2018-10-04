@@ -2,96 +2,81 @@
 Actions
 =======
 
-Kervi actions are use when you want to react to sensors, gpio ports and other kinds of input.
+Kervi actions are used when you want to react to sensors, gpio ports and other kinds of input.
 You create an action by decorating a function with the @action decorator.
 
-The fan controller below code is extended with an action called Active.
-That action is linked to the ui where it is possible to toggle the fan controller on/off.
+The code below defines two actions one that is linked to a sensor 
+and one that is linked to the web ui.
 
+.. code-block:: python
 
-if __name__ == '__main__':
+    .. code-block:: python
+
+    if __name__ == '__main__':
 
         from kervi.application import Application
-                
+        
         app = Application()
 
-        #create sensors
+        #create sensor
         from kervi.sensors.sensor import Sensor
         from kervi.devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
-        from kervi.devices.platforms.common.sensors.cpu_temp import CPUTempSensorDeviceDriver
 
-        #create a senors that uses CPU load device driver
-        cpu_load_sensor = Sensor("CPULoadSensor","CPU", CPULoadSensorDeviceDriver())
-        
         #link to dashboard
         cpu_load_sensor.link_to_dashboard("*", "header_right")
         cpu_load_sensor.link_to_dashboard(type = "value", show_sparkline=True, link_to_header=True)
         cpu_load_sensor.link_to_dashboard(type="chart")
 
-        #create a senors that uses CPU temp device driver
-        cpu_temp_sensor = Sensor("CPUTempSensor","CPU temp", CPUTempSensorDeviceDriver())
-        
-        #link to dashboard
-        cpu_temp_sensor.link_to_dashboard("*", "header_right")
-        cpu_temp_sensor.link_to_dashboard(type = "value", show_sparkline=True, link_to_header=True)
-        cpu_temp_sensor.link_to_dashboard(type="chart")
-
-        from kervi.controllers.controller import Controller
-        from kervi.values import NumberValue
         from kervi.actions import action
         
-        class FanController(Controller):
-            def __init__(self):
-                Controller.__init__(self, "fan_controller", "Fan")
+        #create an action that listen to a sensor
+        @action
+        def my_sensor_action():
+            print("My sensor action called")
 
-                self.temp = self.inputs.add("temp", "Temperature", NumberValue)
-                self.temp.min = 0
-                self.temp.max = 150
-                
-                self.fan_speed = self.outputs.add("fan_speed", "Fanspeed", NumberValue)
+        #link action to sensor 
+        #trigger action when sensor value is greater than 25%
+        my_sensor.link_to(cpu_load_sensor, trigger_value: lambda x: x > 25)
 
-                self._active = False
 
-            #action that starts the active monitoring of the temperature input
-            @action
-            def active(self):
-                self._active = not self._active
-                self._calc_fan_speed()
+        #create an action that is linked to the ui.
+        @action
+        def my_ui_action():
+            print("my ui action called")
 
-            def input_changed(self, changed_input):
-                _calc_fan_speed()
-
-            def _calc_fan_speed():
-                if self._active:
-                    temp = self.temp.value
-                    if temp <= 20:
-                        self.fan_speed.value = 0
-                    else:
-                        speed = (temp / 80) * 100
-                        if speed > 100:
-                            speed = 100
-                        self.fan_speed.value = speed
-                else:
-                    self.fan_speed.value = 0
-
-        
-        fan_controller = FanController()
-
-        #link the fan controllers temp input to cpu temperature sensor
-        #The temp sensor is loaded in another process and linked via its id
-        fan_controller.temp.link_to(cpu_temp_sensor)
-
-        #Show the controller input
-        fan_controller.temp.link_to_dashboard()
-        
-        #link the controller output the UI
-        fan_controller.fan_speed.link_to_dashboard()
-
-        #link to ui.
-        fan_controller.active.link_to_dashboard()
-
-        
+        my_ui_action.link_to_dashboard()
 
         app.run()
 
+
+When you run the code above you should see output in the terminal window when the actions are executed.
+
+When you run your kervi script on an Raspberry Pi it is possible to link an action to gpio.
+Connect a switch to GPIO 12 on the Raspberry Pi and run the script below.
+Each time the switch is pressed the my_gpio_action is called and the action text is printed in the terminal window. 
+
+.. code-block:: python
+
+    .. code-block:: python
+
+    if __name__ == '__main__':
+
+        from kervi.application import Application
+        
+        app = Application()
+
+        from kervi.hal import GPIO
+        GPIO["GPIO12"].define_as_input()
+    
+        from kervi.actions import action
+
+        @action
+        def my_gpio_action()
+            print("my gpio action called")
+
+        my_gpio_action.link_to(GPIO["GPIO12"])
+
+
 Read more about all the possibilities with actions :ref:`here <actions>`.
+
+ 

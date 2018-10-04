@@ -4,9 +4,9 @@ Sensors
 
 Sensors are an important part of automation. 
 Below you see the app from previous section extended with code that includes a  
-sensor for cpu load on the device where the script is executed. 
+sensor for cpu load on the device where the script is executed.
 
-.. code:: python
+.. code-block:: python
 
     if __name__ == '__main__':
 
@@ -39,6 +39,9 @@ The UI is responsive and responds when you scale the browser window or view it o
 .. image:: ../images/hello_sensors_responsive.png
     :width: 35 %
 
+
+You can see the sensor device drivers that are available out of the box in the :ref:`kervi device library <kdl_sensors>`
+
 Read more about sensors :ref:`here <device_sensors>`.
 
-Proceed to the next section and lean how to react to sensor changes.
+Proceed to the next chapter and lean how to react to sensor changes.
