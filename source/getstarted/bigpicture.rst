@@ -49,29 +49,32 @@ Below is a bigger application that combines many of the concepts presented in th
         #build in sensor that measures cpu temperature
         SENSOR_CPU_TEMP = Sensor("CPUTempSensor", "", CPUTempSensorDeviceDriver())
         
+        from kervi.controllers.controller import Controller, NumberValue
+        from kervi.actions import action
+
         class FanController(Controller):
             def __init__(self):
                 Controller.__init__(self, "fan_controller", "Fan")
                 self.type = "fan"
 
-                self.temp = self.inputs.add("temp", "Temperature", DynamicNumber)
+                self.temp = self.inputs.add("temp", "Temperature", NumberValue)
                 self.temp.min = 0
                 self.temp.max = 150
 
-                self.trigger_temp = self.inputs.add("trigger_temp", "Trigger temperature", DynamicNumber)
+                self.trigger_temp = self.inputs.add("trigger_temp", "Trigger temperature", NumberValue)
                 self.trigger_temp.min = 0
                 self.trigger_temp.max = 100
                 #remember the value when app restarts
                 self.trigger_temp.persist_value = True
 
-                self.max_temp = self.inputs.add("max_temp", "Max speed temperature", DynamicNumber)
+                self.max_temp = self.inputs.add("max_temp", "Max speed temperature", NumberValue)
                 self.max_temp.min = 0
                 self.max_temp.max = 100
                 #remember the value when app restarts
                 self.max_temp.persist_value = True
 
                 #The only output from this controller is the speed of the fan
-                self.fan_speed = self.outputs.add("fan_speed", "Fanspeed", DynamicNumber)
+                self.fan_speed = self.outputs.add("fan_speed", "Fanspeed", NumberValue)
 
                 #private flag that indicate the controller is active and monitors temp and set speed.
                 self._active = True

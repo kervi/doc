@@ -2,99 +2,107 @@
 Contribute
 =================================
 
-The kervi project is build on several github projects all under the github.com/kervi name space.
+The kervi project is build on several github projects all located under the github.com/kervi name space.
 Most of the project are clean python projects except from the web interface project that is implemented as an Angular 4 application. 
 
-Development enviroment
+Development environment
 ======================
 
 `GIT <https://git-scm.com/downloads>`_ is used to handle all source code via github.com.
-If you want to paticipate install GIT and create an account on github.com 
+If you want to participate install GIT and create an account on github.com 
 
 `Visual Studio Code <https://code.visualstudio.com/download>`_ is used for all projects and VS code settings for each project are stored in the github projects.
 For python programming the VS Code Python extension by Don Jayamanne is used for lintning and debuggin. 
 
 `NPM <https://docs.npmjs.com/>`_ is used to handle packages for the web interface if you want to contribute to the web part you need to install NPM.
 
+
+Get and prepare source
+====================== 
+
 Github projects
-===============
+---------------
 
-The framework is multi layered and there exists one or more github projects for each layer.
+Create a development root folder for the kervi projects and clone the following projects from github.
 
-+--------------------------------------+
-| application                          |         
-+-------------------------+------------+
-| Kervi core              | UI         |
-+-------------------------+------------+
-| Kervi platform driver                |
-+--------------------------------------+
-| devices                              |
-+--------------------------------------+
+::
 
-.. note:: It is important to clone all github projects before installing the packages.  
+    git clone https://github.com/kervi/kervi.git
+    git clone https://github.com/kervi/kervi-core.git
+    git clone https://github.com/kervi/kervi-ui.git
+    git clone https://github.com/kervi/kervi-hal-rpi.git
+    git clone https://github.com/kervi/kervi-hal-windows.git
+    git clone https://github.com/kervi/kervi-hal-generic.git
+    git clone https://github.com/kervi/kervi-devices.git
+    
 
--------------------------------------
-Application (demo, integration tests)
--------------------------------------
+Install python packages
+----------------
 
-https://github.com/kervi/kervi-test.git
+The cloned git projects above should be installed as python development packages.
 
-This projects is used for integration test and demonstrates how the framework is used.
+Execute the commands below in the kervi project root folder.
+The order is important::
 
------------
+    pip install -e ./kervi-devices
+    pip install -e ./kervi-hal-generic
+    pip install -e ./kervi-hal-rpi
+    pip install -e ./kervi-hal-windows
+    pip install -e ./kervi-cli
+    pip install -e ./kervi-core
+    pip install -e ./kervi-ui
+    pip install -e ./kervi
+
+
+Preparing web development
+-------------------------
+
+The web ui is an Angular 6+ application.
+The angular project is located in "kervi-ui/kervi_ui/web".
+
+You need to update the npm packages in the web folder by calling::
+
+    >npm update
+
+Next you have to install the angular cli tool::
+
+    >npm install -g @angular/cli
+
+Projects
+========
+
 Kervi core
 -----------
 
-The core part of the framework::
+The core part of the framework. This project is project is expected to be a base between Kervi and "Kervi for micropython"
+ 
+Kervi
+-----
 
-    git clone https://github.com/kervi/kervi.git
+This project is the actual Kervi project that uses the core features and extends with functionality like camera, mail and message plugins.
 
----------------------
-Kervi platform driver
+
+Platform drivers
 ---------------------
 
 There is a project for each supported platform.
 A platform driver exposes the platforms hardware like gpio, i2c, cameras.
 For hardware platforms that are not supported a generic driver is used. 
 
-::
-
-    git clone https://github.com/kervi/kervi-hal-rpi.git
-
-    git clone https://github.com/kervi/kervi-hal-generic.git
-  
-
---------------------------
 Kervi device library
 --------------------------
 
 This project holds drivers for specific hardware and dummy drivers for test.
 
-::
-    
-    git clone https://github.com/kervi/kervi-devices.git 
-
--------------------------
 Kervi UI (Web dashboards)
 -------------------------
-This project contains the python kervi web server and Angular dashboard application.
+This project contains the python kervi web server and the Angular dashboard application.
 
-::
+The source for the web ui is located in "kervi-ui/kervi_ui/web".
 
-    git clone https://github.com/kervi/kervi-ui.git 
+To start the Angular development server use::
 
-The angular project is located in kervi_ui/web and is a Angular 4+ application.
-You have to update the npm packages in the web folder by calling::
-
-    npm update
-
-Next you have to install the angular cli tool::
-
-    npm install -g @angular/cli
-
-You should now be ready to start web ui development enviroment via::
-
-    ng serve
+    >ng serve
 
 This starts a web server that runs the Kervi angular app directly from source.
 
@@ -104,8 +112,7 @@ Below is a sample app settings that show how to set the settings IPAddress and I
 .. code:: python
 
     from kervi.application import Application
-    import kervi.utility.nethelper as nethelper
-
+    
     if __name__ == '__main__':
         APP = Application({
             "network":{
@@ -121,40 +128,39 @@ If you want to test your changes in the Kervi web server you need to build the u
 
     ng build
 
-
 Go to the web address that is displayed when the kervi app is started.
- 
 
-Install packages
-================
 
-The cloned git projects above should be installed as python development packages.
-Execute the commands below the order is important::
+-------------------------------------
+Test apps
+-------------------------------------
 
-    pip install -e ./kervi-devices
-    pip install -e ./kervi-ui
-    pip install -e ./kervi-hal-generic
-    pip install -e ./kervi-cli
-    pip install -e ./kervi
+The a test project for Kervi is located  https://github.com/kervi/kervi-test.git
+
+This projects is used for integration test and demonstrates how the framework is used.
 
 Documentation
 =============
 
-If you want to help with the documentation you need to clone the kervi project (see above).
-Source files for the documentation are located in the _doc folder as a sphinx project.
+Documentation for the Kervi framework is build with Sphinx.
 
 Run these commands to install sphinx ::
 
     pip install sphinx
     pip install sphinx_rtd_theme
 
-Run the command below in the _doc folder::
+
+Clone the documentation source from github.
+
+::
+
+    git clone https://github.com/kervi/kervi-doc.git
+
+Source files are located in the "source" folder.
+
+You need to call the sphinx builder in order to generate the html output.
+Run the command below in the root of the kervi-doc project::
 
     make html
 
-This will create a kervi-doc folder at the same level as the kervi project.
-Open kervi-doc/html/index.html in a browser and you should see the finished documentation.
-
-When you are ready to submit your work create a pull request on github.
-
-
+Open kervi-doc/build_output/html/index.html in a browser and you should see the finished documentation.

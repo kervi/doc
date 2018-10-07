@@ -16,13 +16,9 @@ Create a python file my_app.py with the content below.
         app = Application()
         app.run()
 
+
 When you run the python script in a terminal you should see the following output. 
 
-.. role:: green
-
-.. raw:: html
-
-    <style> .green {color:green} </style>
 
 ::
 

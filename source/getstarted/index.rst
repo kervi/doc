@@ -16,5 +16,6 @@ Most of the code runs on any platform supporting Python.
    actions
    controllers
    dashboards
+   camera
    bigpicture
    

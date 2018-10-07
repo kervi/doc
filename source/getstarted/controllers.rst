@@ -73,4 +73,9 @@ max speed when the temperature is 80 degrees.
     
         app.run()
 
+
+Run the script and you should see something like this.
+
+.. image:: ../images/fan_controller.png
+
 Read more about all the possibilities with controllers :ref:`here <controllers>`.

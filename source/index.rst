@@ -68,5 +68,6 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    service
    cli
    ipc
-   contribute
    kervi_api
+   contribute
+   
