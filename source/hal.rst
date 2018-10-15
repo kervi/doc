@@ -148,7 +148,7 @@ Below is an example that uses the light sensor TLS2561.
 .. code-block:: python
 
     """ Module for a sensor """
-    from kervi.sensors.sensor import Sensor
+    from kervi.sensors import Sensor
     from kervi.devices.sensors.TSL2561 import TSL2561Device
 
     lux=Sensor("lux_sensor","Lux sensor", device=TSL2561Device()

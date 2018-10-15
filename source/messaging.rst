@@ -16,7 +16,7 @@ You can set warning and error ranges on sensors and other kervi values.
     from kervi.application import Application
     app = Application()
 
-    from kervi.sensors.sensor import Sensor
+    from kervi.sensors import Sensor
     from kervi.devices.sensors.dummy_sensor import DummySensorDeviceDriver
 
     sensor = Sensor("sensor","CPU", DummySensorDeviceDriver())

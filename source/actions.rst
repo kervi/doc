@@ -53,7 +53,7 @@ You may also decorate methods in kervi controllers:
 
 .. code:: python
 
-    from kervi.controllers.controller import controller
+    from kervi.controllers import controller
     from kervi.actions import action
     
     class GateController(Controller):
@@ -358,7 +358,7 @@ You can connect a battery sensor to the *shutdown action* and initiate a shutdow
 
         APP = Application()
         
-        from kervi.sensors.sensor import Sensor
+        from kervi.sensors import Sensor
         from kervi.devices.sensors.CW2015 import CW2015CapacityDeviceDriver
     
         capacity_sensor = Sensor("CW2015_capacity", "CW2015 capacity", CW2015CapacityDeviceDriver())
@@ -428,7 +428,7 @@ The move_gate action is also linked GPIO4 and GPIO5. When GPIO4 is triggered the
             ]
         )
 
-        from kervi.controllers.controller import Controller
+        from kervi.controllers import Controller
         from kervi.actions import action
         from kervi.values import NumberValue, BooleanValue
         

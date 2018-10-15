@@ -72,8 +72,8 @@ sensors/system_sensors.py
 
 .. code:: python
 
-    from kervi.sensors.sensor import Sensor
-    from kervi.devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
+    from kervi.sensors import Sensor
+    from kervi.devices.sensors.system import CPULoadSensorDeviceDriver
     
     #create a sensor with id "cpu_load"
     CPU_SENSOR = Sensor("cpu_load","CPU", CPULoadSensorDeviceDriver())
@@ -92,7 +92,7 @@ controllers/fan_controller.py
 
 .. code:: python
 
-    from kervi.controllers.controller import Controller
+    from kervi.controllers import Controller
     from kervi.values import NumberValue
     from kervi.action import action
 

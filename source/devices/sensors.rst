@@ -151,7 +151,7 @@ CW2015 is a single channel Lipo battery manager where it is possible to read the
     from kervi.application import Application
     APP = Application()
 
-    from kervi.sensors.sensor import Sensor
+    from kervi.sensors import Sensor
     from kervi.devices.sensors.CW2015 import CW2015VoltageDeviceDriver, CW2015CapacityDeviceDriver
     
     sensor = Sensor("CW2015_voltage", "CW2015 voltage", CW2015VoltageDeviceDriver())

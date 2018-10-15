@@ -19,8 +19,8 @@ max speed when the temperature is 80 degrees.
         app = Application()
 
         #create sensors
-        from kervi.sensors.sensor import Sensor
-        from kervi.devices.platforms.common.sensors.cpu_temp import CPUTempSensorDeviceDriver
+        from kervi.sensors import Sensor
+        from kervi.devices.sensors.system import CPUTempSensorDeviceDriver
 
         #create a senors that uses CPU temp device driver
         cpu_temp_sensor = Sensor("CPUTempSensor","CPU temp", CPUTempSensorDeviceDriver())
@@ -30,7 +30,7 @@ max speed when the temperature is 80 degrees.
         cpu_temp_sensor.link_to_dashboard(type="chart")
 
         #define a controller
-        from kervi.controllers.controller import Controller
+        from kervi.controllers import Controller
         from kervi.values import NumberValue
         
         class FanController(Controller):

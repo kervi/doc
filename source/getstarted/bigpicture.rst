@@ -32,9 +32,9 @@ Below is a bigger application that combines many of the concepts presented in th
             ]
         )
         
-        from kervi.sensors.sensor import Sensor
-        from kervi.devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
-        from kervi.devices.platforms.common.sensors.cpu_temp import CPUTempSensorDeviceDriver
+        from kervi.sensors import Sensor
+        from kervi.devices.sensors.system import CPULoadSensorDeviceDriver
+        from kervi.devices.sensors.system import CPUTempSensorDeviceDriver
         
         #build in sensor that measures cpu use
         SENSOR_CPU_LOAD = Sensor("CPULoadSensor", "CPU", CPULoadSensorDeviceDriver())
@@ -49,7 +49,7 @@ Below is a bigger application that combines many of the concepts presented in th
         #build in sensor that measures cpu temperature
         SENSOR_CPU_TEMP = Sensor("CPUTempSensor", "", CPUTempSensorDeviceDriver())
         
-        from kervi.controllers.controller import Controller, NumberValue
+        from kervi.controllers import Controller, NumberValue
         from kervi.actions import action
 
         class FanController(Controller):
