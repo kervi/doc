@@ -8,8 +8,9 @@ in your main application script.
 
 Create a python file my_app.py with the content below.
 
-.. code:: Python
-
+.. code-block:: Python
+    :linenos:
+    
     if __name__ == '__main__': # this line is important in windows
         from kervi.application import Application
         

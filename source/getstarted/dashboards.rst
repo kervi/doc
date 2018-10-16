@@ -16,6 +16,7 @@ In the code snippet below the cpu_load_sensor is linked twice to the ui.
 The ui creates a panel on the first link and reuses this panel on the next link.  
 
 .. code-block:: python
+    :linenos:
 
     #create a senors that uses CPU load device driver
     cpu_load_sensor = Sensor("CPULoadSensor","CPU", CPULoadSensorDeviceDriver())
@@ -38,6 +39,7 @@ You can use a lot of parameters for each panel that specify how the panel should
 Below is the controller script again but now with defined dashboards and panels.
 
 .. code-block:: python
+    :linenos:
 
     if __name__ == '__main__': # this line is important in windows
         from kervi.application import Application

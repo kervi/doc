@@ -9,9 +9,8 @@ The code below defines two actions one that is linked to a sensor
 and one that is linked to the web ui.
 
 .. code-block:: python
-
-    .. code-block:: python
-
+    :linenos:
+    
     if __name__ == '__main__':
 
         from kervi.application import Application
@@ -56,8 +55,7 @@ Connect a switch to GPIO 12 on the Raspberry Pi and run the script below.
 Each time the switch is pressed the my_gpio_action is called and the action text is printed in the terminal window. 
 
 .. code-block:: python
-
-    .. code-block:: python
+    :linenos:
 
     if __name__ == '__main__':
 

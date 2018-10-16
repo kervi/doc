@@ -7,7 +7,8 @@ Below you see the app from previous section extended with code that includes a
 sensor for cpu load on the device where the script is executed.
 
 .. code-block:: python
-
+    :linenos:
+    
     if __name__ == '__main__':
 
         from kervi.application import Application

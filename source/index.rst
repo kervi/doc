@@ -1,17 +1,16 @@
-Kervi!
-=================================
-
+=====
+Kervi
+=====
 
 .. image:: images/kervi_front.png
-
 
 Kervi is a Python framework that makes it very easy to create robotic and automation projects.
 It runs on all platforms that supports Python and have hardware support for Raspberry pi.
 Wire up sensors, controllers and other devices to your Raspberry PI and link them to web based dashboards
 and internal application logic.
 
-You don't need any knowledge about web servers, html or web programming. You configure the ui of your kervi application
-in python code and the framework creates the web ui.
+Knowledge about web servers, html or web programming is not needed.
+UI configuration is done in python code and the framework creates the web ui.
 
 Features of the framework are:
 
@@ -34,7 +33,7 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
         APP = Application()
         
         from kervi.sensor import Sensor
-        from kervi_devices.platforms.common.sensors.cpu_use import CPULoadSensorDeviceDriver
+        from kervi.devices.sensors.system import CPULoadSensorDeviceDriver
         
         cpu_sensor = Sensor("CPULoadSensor","CPU", CPULoadSensorDeviceDriver())
         cpu_sensor.link_to_dashboard(link_to_header=True)

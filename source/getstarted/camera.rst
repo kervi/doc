@@ -5,7 +5,8 @@ Camera (Raspberry Pi)
 It is very easy to stream the Raspberry Pi camera to the web ui.
 
 .. code-block:: python
-
+    :linenos:
+    
     if __name__ == '__main__': # this line is important in windows
         from kervi.application import Application
         
