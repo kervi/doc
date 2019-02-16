@@ -2,8 +2,8 @@
 Contribute
 =================================
 
-The kervi project is build on several github projects all located under the github.com/kervi name space.
-Most of the project are clean python projects except from the web interface project that is implemented as an Angular 4 application. 
+The kervi project is hosted on github and consist of several python packages.
+Most of the projects are clean python projects except from the web interface project that is implemented as an Angular 4 application. 
 
 Development environment
 ======================
@@ -28,12 +28,6 @@ Create a development root folder for the kervi projects and clone the following 
 ::
 
     git clone https://github.com/kervi/kervi.git
-    git clone https://github.com/kervi/kervi-core.git
-    git clone https://github.com/kervi/kervi-ui.git
-    git clone https://github.com/kervi/kervi-hal-rpi.git
-    git clone https://github.com/kervi/kervi-hal-windows.git
-    git clone https://github.com/kervi/kervi-hal-generic.git
-    git clone https://github.com/kervi/kervi-devices.git
     
 
 Install python packages
@@ -41,18 +35,8 @@ Install python packages
 
 The cloned git projects above should be installed as python development packages.
 
-Execute the commands below in the kervi project root folder.
-The order is important::
-
-    pip install -e ./kervi-devices
-    pip install -e ./kervi-hal-generic
-    pip install -e ./kervi-hal-rpi
-    pip install -e ./kervi-hal-windows
-    pip install -e ./kervi-cli
-    pip install -e ./kervi-core
-    pip install -e ./kervi-ui
-    pip install -e ./kervi
-
+run the install_dev.bat (windows) or install_dev.sh script. This script will prepare 
+your kervi installation for development. 
 
 Preparing web development
 -------------------------
@@ -96,13 +80,12 @@ This project holds drivers for specific hardware and dummy drivers for test.
 
 Kervi UI (Web dashboards)
 -------------------------
-This project contains the python kervi web server and the Angular dashboard application.
 
 The source for the web ui is located in "kervi-ui/kervi_ui/web".
 
 To start the Angular development server use::
 
-    >ng serve
+    >ng serve webApp
 
 This starts a web server that runs the Kervi angular app directly from source.
 
@@ -126,7 +109,7 @@ If you want to test your changes in the Kervi web server you need to build the u
 
 ::
 
-    ng build
+    ng build webApp
 
 Go to the web address that is displayed when the kervi app is started.
 
@@ -135,14 +118,14 @@ Go to the web address that is displayed when the kervi app is started.
 Test apps
 -------------------------------------
 
-The a test project for Kervi is located  https://github.com/kervi/kervi-test.git
+There is a test project for Kervi that is located  https://github.com/kervi/kervi-test.git
 
 This projects is used for integration test and demonstrates how the framework is used.
 
 Documentation
 =============
 
-Documentation for the Kervi framework is build with Sphinx.
+This site (kervi.org) is created with the python tool sphinx.   
 
 Run these commands to install sphinx ::
 
@@ -164,3 +147,6 @@ Run the command below in the root of the kervi-doc project::
     make html
 
 Open kervi-doc/build_output/html/index.html in a browser and you should see the finished documentation.
+
+Make a pull request on github when your are ready to publish your changes.
+ 

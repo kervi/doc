@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Kervi'
-copyright = '2018, Tim Wentzlau'
+copyright = '2019, Tim Wentzlau'
 author = 'Tim Wentzlau'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -60,7 +60,7 @@ author = 'Tim Wentzlau'
 # built documents.
 #
 # The short X.Y version.
-version = '0.15.0'
+version = '0.20.0'
 # The full version, including alpha/beta/rc tags.
 release = ''
 
