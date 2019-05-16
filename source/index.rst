@@ -56,14 +56,16 @@ Below is a complete example that shows how to display a sensor on a dashboard wi
    actions
    camera
    motors
+   gpio
    display
+   messaging
    configuration
    security
    hal
    devices/index
    multi_process
    distributed
-   messaging
+   
    service
    cli
    ipc

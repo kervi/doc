@@ -41,7 +41,7 @@ your kervi installation for development.
 Preparing web development
 -------------------------
 
-The web ui is an Angular 6+ application.
+The web ui is an Angular 7+ application.
 The angular project is located in "kervi-ui/kervi_ui/web".
 
 You need to update the npm packages in the web folder by calling::

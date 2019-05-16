@@ -4,7 +4,7 @@ Controllers
 ==============
 
 A controller reacts to one or more inputs and computes one or more outputs.
-The input could come from the user via the web based UI, sensors or other application logic.
+The input could come from the user via the web based UI, gpio, sensors or other application logic.
 
 Basic controllers manages motors, light, servos and so on but you can also build more advanced controllers
 for *line following* and *self navigation*.

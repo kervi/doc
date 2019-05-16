@@ -3,9 +3,9 @@
 Actions
 ==============
 
-Actions are distributed functions that may be called from anywhere in your kervi application.
-The framework handles process and network boundaries for you if your application
-is a kervi multiprocess/multi device application and/or uses kervi modules. 
+Actions are functions that may be linked to dashboards, sensors, GPIO and other kinds of inputs.
+Actions are callable from anywhere in your kervi application even if they resides in another process 
+the framework handles process and network boundaries for you.
 
 Define actions
 --------------
@@ -19,35 +19,6 @@ You turn a function into an action via the @action decorator
     @action
     def my_action(p):
         print("my action", p)
-
-
-You are now able to call it from anywhere in your application via:
-
-.. code:: python
-
-    from kervi.actions import Actions
-
-    Actions["my_action"]("x")
-
-
-The @action decorator takes the optional parameters action_id.
-
-.. code:: python
-
-    from kervi.actions import action
-
-    @action(action_id="alternative_id")
-    def my_action(p):
-        print("my action", p)
-
-You now call it via:
-
-.. code:: python
-
-    from kervi.actions import Actions
-
-    Actions["alternative_id"]("x")
-
 
 You may also decorate methods in kervi controllers:
 
@@ -64,16 +35,20 @@ You may also decorate methods in kervi controllers:
         def open(self, speed):
             print("open gate with speed:", speed)
 
-And call the action
+
+Execute actions
+---------------
+
+You execute an action just as an normal function or method
 
 .. code:: python
 
-    from kervi.actions import Actions
+    my_action("p1")
 
-    Actions["gate_controller.open"](100)
+    gate_controller = GateController()
+    gate_controller.open(10)
 
 Actions with timeout
---------------------
 
 By default, an action is called synchronous and first returns with the result when the action is completed.
 If you expect your action to operate within a special time interval, you can add the keyword parameter timeout to
@@ -92,15 +67,6 @@ the action call. If the execution time exceeds the timeout, a TimeoutError excep
     except TimeoutError:
         print("Timout occured")
 
-If the action is defined in another process or module call this way:
-
-.. code:: python
-
-    try:
-        Actions["my_action"](timeout=5)
-    except TimeoutError:
-        print("time out in action")
-
 Asynchronous action call
 ------------------------
 
@@ -109,7 +75,7 @@ Just set the keyword argument run_async to true.
 
 .. code:: python
 
-    Actions["my_action"](run_async=True)
+    my_action(run_async=True)
 
 
 Interrupts
@@ -138,13 +104,13 @@ To handle this situation you need to specify an interrupt function for an action
 
     
     #call action
-    Actions["my_action"]()
+    my_action(run_async=True)
 
     #wait for five seconds
     time.sleep(5)
 
     #signal that the action should terminate
-    Actions["my_action"].interrupt() 
+    my_action.interrupt() 
 
 
 Interrupts support parameters
@@ -157,12 +123,79 @@ Interrupts support parameters
         terminate = True
         print("interrupt my_action:", p1)
 
-    Actions["my_action"].interrupt("P 1")
+    
+    #call action
+    my_action(run_async=True)
+
+    #wait for five seconds
+    time.sleep(5)
+
+    #signal that the action should terminate
+    my_action.interrupt("p !")
+
+The action decorator injects a variable "exit_action" that is false until the action is interrupted.
+
+.. code:: python
+    
+    @action
+    def my_action(p1="p1d", **kwargs):
+        print("action", p1, kwargs.get("kw1", None))
+        while not exit_action:
+            print("in loop")
+            time.sleep(1)
+        print("action interrupted")
+
+    
+    my_action("p1x", kw1=10, run_async=True)
+    #wait for five seconds
+    time.sleep(5)
+
+    #signal that the action should terminate
+    my_action.interrupt()
+
+Scheduling
+----------
+
+It is possible to schedule when an action should run
+
+.. code:: python
+
+    @action
+    def my_action(p1):
+        print("My action", p1)
+        
+    my_action.run_every().minute.do("P1")
+    my_action.run_every(10).minutes.do("P1")
+    my_action.run_every().minute.at(":17").do("P1")
+    
+    my_action.run_every().hour.do("P1")
+
+    my_action.run_every().day.do("P1")
+    my_action.run_every().day.at("10:30").do("P1")
+    
+    
+    my_actionrun_every().monday.do("P1")
+    my_action.run_every().wednesday.at("13:15").do("P1")
+
+It is also possible to run an action in an time interval.
+
+.. code:: python
+    
+    @action
+    def my_action(p1="p1d", **kwargs):
+        print("action", p1, kwargs.get("kw1", None))
+        while not exit_action:
+            print("in loop")
+            time.sleep(1)
+        print("action interrupted")
+
+    my_action.run_every().minute.at(":58").until(":02").do("P!x", kw1=20)
+    my_action.run_every().wednesday.at("13:15").do("P1")
 
 Linking to dashboards
 ---------------------
 
-It is possible to link actions to ui dashboards in the same way as signals.
+It is possible to link actions to dashboards.
 A linked action will show up as a button on the panel.
 
 .. code:: python
@@ -356,42 +389,42 @@ You can connect a battery sensor to the *shutdown action* and initiate a shutdow
 
     from kervi.application import Application
 
-        APP = Application()
-        
-        from kervi.sensors import Sensor
-        from kervi.devices.sensors.CW2015 import CW2015CapacityDeviceDriver
+    APP = Application()
     
-        capacity_sensor = Sensor("CW2015_capacity", "CW2015 capacity", CW2015CapacityDeviceDriver())
-        
-        #link sensor to action.
-        APP.actions.shutdown.link_to(capacity_sensor, trigger_value=lambda x: x<10)
+    from kervi.sensors import Sensor
+    from kervi.devices.sensors.CW2015 import CW2015CapacityDeviceDriver
 
-        #display a battery icon in the header of your application. 
-        capacity_sensor.set_ui_parameter("value_icon", [
-            {
-                "range":[0, 5],
-                "icon":"battery-empty"
-            },
-            {
-                "range":[5, 25],
-                "icon":"battery-quarter"
-            },
-            {
-                "range":[20, 50],
-                "icon":"battery-half"
-            },
-            {
-                "range":[5, 75],
-                "icon":"battery-three-quarters"
-            },
-            {
-                "range":[75, 100],
-                "icon":"battery-full"
-            }
-        ])
-        capacity_sensor.link_to_dashboard("*", "header_right", display_unit=False, show_sparkline=False, show_value=False)
+    capacity_sensor = Sensor("CW2015_capacity", "CW2015 capacity", CW2015CapacityDeviceDriver())
+    
+    #link sensor to action.
+    APP.actions.shutdown.link_to(capacity_sensor, trigger_value=lambda x: x<10)
 
-        APP.actions.shutdown
+    #display a battery icon in the header of your application. 
+    capacity_sensor.set_ui_parameter("value_icon", [
+        {
+            "range":[0, 5],
+            "icon":"battery-empty"
+        },
+        {
+            "range":[5, 25],
+            "icon":"battery-quarter"
+        },
+        {
+            "range":[20, 50],
+            "icon":"battery-half"
+        },
+        {
+            "range":[5, 75],
+            "icon":"battery-three-quarters"
+        },
+        {
+            "range":[75, 100],
+            "icon":"battery-full"
+        }
+    ])
+    capacity_sensor.link_to_dashboard("*", "header_right", display_unit=False, show_sparkline=False, show_value=False)
+
+    APP.run()
 
 Complete example
 -----------------
@@ -522,12 +555,39 @@ of the gate speed could be set.
 Multi process
 ------------
 
+If you want to call an action that is defined in another process within your kervi application you use the Actions list.
+
+.. code:: python
+
+    from kervi.actions import Actions
+
+    Actions["my_action"]("x")
+
+
+The @action decorator takes the optional parameters action_id.
+.. code:: python
+
+    from kervi.actions import action
+
+    @action(action_id="alternative_id")
+    def my_action(p):
+        print("my action", p)
+
+You now call it via:
+
+.. code:: python
+
+    from kervi.actions import Actions
+
+    Actions["alternative_id"]("x")
+
+
 This example shows how to set up at simple robot and control it via an external script of commands.
 
-It consists of two scripts robot.py that should be executed on the robot
+It consists of two scripts robot.py that should be executed on the robot 
 and a script robot_task.py that holds a series of actions that the robot should perform.
 
-robot.py is a kervi application that you should execute on your Raspberry pi, when started it will show the ip address of the app this should be used in the robot_task.py script.
+robot.py is a kervi application that you should execute on your Raspberry pi.
 
 .. code:: python
     
@@ -540,6 +600,8 @@ robot.py is a kervi application that you should execute on your Raspberry pi, wh
         from kervi.devices.motors.dummy_motor_driver import DummyMotorBoard
 
         motor_board = DummyMotorBoard()
+        
+        #MotorSteering is a build controller for handling robots with two motors.
         steering = MotorSteering()
         
         steering.left_speed.link_to(motor_board.dc_motors[0])
@@ -548,6 +610,8 @@ robot.py is a kervi application that you should execute on your Raspberry pi, wh
         @action
         def app_exit():
             steering.stop()
+
+        APP.run()
 
 The other python script robot_tasks.py is a kervi module that connects to the
 kervi application in robot.py. You can run it on the robot itself or another computer
@@ -558,11 +622,8 @@ on your local network.
     if __name__ == '__main__':
         from kervi.module import Module
         from kervi.actions import action, Actions
-        module = Module({
-            "network" : {
-                "ipc_root_address": "#Enter the ip that is displayed when running robot.py#"
-            }
-        })
+        module = Module()
+        
         
         @action
         def module_main():
