@@ -19,16 +19,16 @@ for installed Kervi platform drivers and loads the GPIO driver.
         #Get access to main board GPIO
         from kervi.hal import GPIO
 
-        GPIO["GPIO12"].define_as_input()
+        GPIO["gpio12"].define_as_input()
 
         #Link to dashboard it will show as a read only switch.
         #If the the GPIO 12 pin is set high, the switch will change to on. 
-        GPIO["GPIO12"].link_to_dashboard(")
+        GPIO["gpio12"].link_to_dashboard(")
 
-        GPIO["GPIO13"].define_as_output()
+        GPIO["gpio13"].define_as_output()
         #Link to dashboard it will show as a switch
-        #Press the button on screen to turn the GPIO pin 12 high
-        GPIO["GPIO13"].link_to_dashboard("main", "gpio")
+        #Press the button on screen to turn the GPIO pin 13 high
+        GPIO["gpio13"].link_to_dashboard("main", "gpio")
 
         APP.run()
 
@@ -48,7 +48,7 @@ Some times it is desireable to pull up the pin when not connected.
         #Get access to main board GPIO
         from kervi.hal import GPIO
 
-        GPIO["GPIO12"].define_as_input(pullup=True)
+        GPIO["gpio12"].define_as_input(pullup=True)
 
 Bounce
 ------
@@ -68,7 +68,7 @@ When defining an gpio input its is possible to set the time for bouncing and the
         #Get access to main board GPIO
         from kervi.hal import GPIO
 
-        GPIO["GPIO12"].define_as_input(bounce_time=300)
+        GPIO["gpio12"].define_as_input(bounce_time=300)
 
 PWM
 ---
@@ -87,15 +87,17 @@ The duty cycle is a value between 0 and 100.
     from kervi.hal import GPIO
 
     #define pin as pwm with a frequence as 60 hZ and an initial duty_cycle=50%
-    GPIO["GPIO3"].define_as_pwm(60, 50)
+    GPIO["gpio3"].define_as_pwm(60, 50)
+    GPIO["gpio3"].pwm.active.value = True
+
     
     #Link to dashboard 
-    GPIO["GPIO3"].pwm["duty_cycle"].link_to_dashboard()
+    GPIO["gpio3"].pwm.duty_cycle.link_to_dashboard()
 
     @action
     def app_main():
         #change the duty cycle. The value should be
-        GPIO["GPIO3"].pwm["duty_cycle"].value=80
+        GPIO["gpio3"].pwm.duty_cycle.value=80
     
     APP.run()
 
@@ -131,19 +133,19 @@ It is possible to schedule when to change an gpio pin.
 
         from kervi.hal import GPIO
 
-        GPIO["GPIO12"].define_as_output()
+        GPIO["gpio12"].define_as_output()
 
-        GPIO["GPIO12"].every().monday.at("10:30").set(True)
-        GPIO["GPIO12"].every().monday.at("11:30").set(False)
+        GPIO["gpio12"].every().monday.at("10:30").set(True)
+        GPIO["gpio12"].every().monday.at("11:30").set(False)
 
-        GPIO["GPIO12"].every(2).monday.at("10:30").set(True)
-        GPIO["GPIO12"].every(2).monday.at("11:30").set(False)
+        GPIO["gpio12"].every(2).monday.at("10:30").set(True)
+        GPIO["gpio12"].every(2).monday.at("11:30").set(False)
 
-        GPIO["GPIO12"].every().day.at("10:30").set(True)
-        GPIO["GPIO12"].every().day.at("11:30").set(False)
+        GPIO["gpio12"].every().day.at("10:30").set(True)
+        GPIO["gpio12"].every().day.at("11:30").set(False)
 
-        GPIO["GPIO12"].every().minute.at(":00").set(True)
-        GPIO["GPIO12"].every().minute.at(":30").set(False)
+        GPIO["gpio12"].every().minute.at(":00").set(True)
+        GPIO["gpio12"].every().minute.at(":30").set(False)
 
         APP.run()
 
@@ -163,8 +165,8 @@ The web ui user can change the state of the gpio pin it is defined as output oth
         #Get access to main board GPIO
         from kervi.hal import GPIO
 
-        GPIO["GPIO12"].define_as_input()
-        GPIO["GPIO12"].link_to_dashboard(title="button 1", type="switch")
+        GPIO["gpio12"].define_as_input()
+        GPIO["gpio12"].link_to_dashboard(title="button 1", type="switch")
 
         GPIO["GPIO11"].define_as_output()
         GPIO["GPIO11"].link_to_dashboard(title="Light 1", type="button")
@@ -191,7 +193,7 @@ GPIO pins can trigger actions.
         #Get access to main board GPIO
         from kervi.hal import GPIO
 
-        GPIO["GPIO12"].define_as_input()
+        GPIO["gpio12"].define_as_input()
    
         from kervi.actions import action
 
@@ -201,7 +203,7 @@ GPIO pins can trigger actions.
 
 
         #my action is called when gpio12 goes high 
-        my_action.link_to(GPIO["GPIO12"])
+        my_action.link_to(GPIO["gpio12"])
 
         APP.run()
 
