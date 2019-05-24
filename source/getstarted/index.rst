@@ -17,5 +17,6 @@ Most of the code runs on any platform supporting Python.
    controllers
    dashboards
    camera
+   gpio
    bigpicture
    
