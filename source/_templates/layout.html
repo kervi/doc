@@ -1,0 +1,22 @@
+{% extends "!layout.html" %}
+{% block extrahead %}
+<script type="text/javascript" src="https://www.PrivacyPolicies.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en"});
+});
+</script>
+
+<script cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-144183988-1"></script>
+<script cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144183988-1');
+</script>
+
+{% endblock %}
